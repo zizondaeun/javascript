@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>다은소개합니다.</title>
+</head>
+<body>
+	<!-- myinfo/resume.html -->
+	<h3>소개란...</h3>
+	<table border='1'>
+		<tr>
+			<th>이름</th><td>김다은</td>
+			<th>연락처</th><td>010-1111-2222</td>
+			<th>성별</th><td>여</td>
+		</tr>
+	</table>
+	<button>추가</button>
+	<a href="../index.html">첫페이지로 이동</a> 
+	<script>
+		//DOM 제어
+		document.querySelector('td').innerText = 'Kimdaeun'; 
+		//첫번째 요소만을 찾아옴 (td의)-querySelector
+		document.querySelector('td:nth-of-type(2)').innerText = '010-1234-5678';
+		//태그의 사이에 들어가는 값-innerText
+		document.querySelector('td:nth-of-type(3)').innerText = 'Women';
+		//추가 버튼을 클릭하면 -> 이름:홍길동, 연락처:010-1010-2020, 성별:남 으로 되게끔
+		
+	</script>
+</body>
+</html>
