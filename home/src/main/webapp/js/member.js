@@ -95,6 +95,7 @@ members.forEach(function(item){
 //	console.log(e.pageX,e.pageY);
 //})
 
+//4/29 과제 제출 
 function editRow(){
 	let val = document.querySelector('#memberNo').value;
 	//console.log(val);
