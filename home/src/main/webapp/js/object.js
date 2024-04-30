@@ -10,7 +10,7 @@ const obj = { //new Object(); -객체만듦
 	},
 	empList: function(){ //메소드 하나더 선언(익명함수..?)
 		//Ajax (목금 수업할것)
-		fetch('../empList.json')
+		fetch('../empList.json') //보내는거
 		.then(function(result){ //then 메소드
 			return result.json(); //json 문자열 -> 객체 변환시켜줌 :then
 		})
@@ -22,7 +22,6 @@ const obj = { //new Object(); -객체만듦
 					let td = document.createElement('td'); // let td = <td></td>
 					td.innerText = member[prop];
 					tr.appendChild(td); //<tr><td></td></tr>
-					
 				}
 				document.querySelector('tbody').appendChild(tr); //tbody = <tr><td></td></tr>
 			});

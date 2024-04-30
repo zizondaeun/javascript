@@ -33,12 +33,12 @@ public class EmpListJson extends HttpServlet{
 					+ "\",\"email\":\"" + map.get("이메일") 
 					+ "\"}";
 			if((i+1) != list.size()){ //배열이 0 포함하니까 +1 
-				json += ",";
+				json += ","; //끝나는게 아니면 ',' 붙여준다
 			 
 			}
 		}
 		json += "]";
 		
-		resp.getWriter().print(json); //문자출력하는거
+		resp.getWriter().print(json); //문자출력하는거-json을 ../empList.json로 반환한다
 	}
 }

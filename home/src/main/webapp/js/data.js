@@ -7,6 +7,7 @@ const members = [
 	{no:1003, name:'박길동', point:95}
 ];
 
+
 //배열 for반복문
 //for(let mem of members){}
 
