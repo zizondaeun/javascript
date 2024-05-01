@@ -31,16 +31,16 @@ function makeList(ary = []){
 	})
 }
 
-makeHeader(empList); //tbody 위에 thead가 있어야하니까 위에 있는듯
 makeList(empList);
+makeHeader(); 
 //연습)html에 thead안에 tr,th만드는거
-function makeHeader(ary = []){
-	let emp = [ 'no', 'name', 'email', 'salary','gender' ];
+function makeHeader(){
+	let emps = [ 'no', 'name', 'email', 'salary','gender' ];
 	let tr = document.createElement('tr'); //let tr = <tr></tr>
-	emp.forEach((text) => {
+	emps.forEach((emp) => {
 		let th = document.createElement('th'); //let th = <th></th>
-		th.innerHTML = text; //<th>text</th>
-		tr.appendChild(th); //<tr><th>text</th>*5</tr>
+		th.innerHTML = emp; //<th>emp</th>
+		tr.appendChild(th); //<tr><th>emp</th>*5</tr>
 	})
 	document.querySelector('#show thead').appendChild(tr);
 }
@@ -51,22 +51,22 @@ document.querySelector('#genderList').addEventListener('change',function(){
 	//console.log(document.querySelector('#genderList')); 이벤트가 잘작동하는지 콘솔로 확인
 	if(chk){ //1.첫번째일때만 chk가 실행안되게 하게끔 4.
 		makeList(empList); //젠더 선택하면 처음에만 리스트가 두번씩 나와서 문제인거야
-	}
+	} //*makeList를 첫번째에서 호출하면 안돼 왜냐 두번보이니까
 	
-	let box = document.querySelector('#genderList').value; //네모박스의 셀렉의 값을 가져와(4개)
-	//console.log(box); genderList의 값 하나씩과 비교해야하니까 .value
+	let opt = document.querySelector('#genderList').value; //네모박스의 셀렉의 값을 가져와(4개)
+	//console.log(opt); genderList의 값 하나씩과 비교해야하니까 .value
 	let data = document.querySelectorAll('#show tbody tr'); //id가 show인 테이블의 thead의 tr을 다 가져와
 	data.forEach(function(tr){ //forEach를 통해 tr 한줄 가져와
 		let td = tr.children[4].innerHTML; //gender 값을 가져옴
 		//console.log(td); table의 td값 쭉 나와
-		if(box != td){ //비교했을때 같지않으면 테이블에서지워줘 근데 다 지워져버리니까(?콘솔에 다시 찍어보기) makeList(empList)로 전체 다 불러 반복
+		if(opt != td){ //비교했을때 같지않으면 테이블에서지워줘 근데 다 지워져버리니까(?콘솔에 다시 찍어보기) makeList(empList)로 전체 다 불러 반복
 						//근데 그렇게 하면 첫화면에서 전체리스트보여주고 옵션선택하면 두번씩 내용이 반복이 되어버리고 그다음이 한번씩 나와서 이거만 
 						//여기서 끝내면 안돼	
 			tr.remove(); //2.
 		}
 	})
-	chk = true; //3. //이거 위치 헷갈려
-})//해봤는데 말로 설명하는게 잘안되서 정리가 이쁘게 잘 안돼 그리고 당장 어제라 기억력에 의존한게 큰거같은...
+	chk = true; //3. /이거 위치
+})
 
 
 
