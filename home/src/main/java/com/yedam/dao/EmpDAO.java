@@ -30,7 +30,6 @@ public class EmpDAO extends DAO {
 		} finally {
 			disCon();
 		}
-
 		return list;
 	}
 
@@ -136,7 +135,7 @@ public class EmpDAO extends DAO {
 			psmt.setInt(3, evo.getEmpNo());
 
 			int r = psmt.executeUpdate();
-			if (r > 0) {
+			if (r > 0) { //성공
 				return true;
 			}
 		} catch (SQLException e) {

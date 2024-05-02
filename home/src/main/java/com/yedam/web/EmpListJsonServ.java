@@ -30,7 +30,7 @@ public class EmpListJsonServ extends HttpServlet{
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(elist); 
 		
-		System.out.println(json);
+		//System.out.println(json);
 		resp.getWriter().println(json); //json 형태로 웹브라우저 출력 /한글 인코딩 전이라 위에서
 		
 		//여기의 반환값을 emp.js로 넘어가(html,servlet,dao 이렇게 필요해)

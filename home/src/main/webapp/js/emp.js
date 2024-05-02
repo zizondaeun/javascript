@@ -11,10 +11,10 @@ function initForm(){
 	xhtp.open('get','../empJson.json'); //*엄청 중요)empJson.json라는 url /../
 	xhtp.send(); //메소드로 결과받아와서
 	xhtp.onload = function(){
-		let data = JSON.parse(xhtp.responseText); //여기에 값을 받아
+		let data = JSON.parse(xhtp.responseText); //여기에 값을 받아 
 		console.log(data); //th불러옴
 		data.forEach(emp => {
-			let tr = makeRow(emp);
+			let tr = makeRow(emp); //
 			document.querySelector('#elist').appendChild(tr); //<tbody><tr></tr></tbody> /list불러옴
 		})
 	}
@@ -51,11 +51,11 @@ function makeRow(emp = {}){ //데이터 한 건 들어오면 기능하게끔
 	let props = ['empNo', 'empName', 'email', 'salary'];
 	//한 건에 대한 처리
 		let tr = document.createElement('tr'); 
-		tr.setAttribute('data-no', emp.empNo); //Attribute data-no속성이래..
+		tr.setAttribute('data-no', emp.empNo); //Attribute data-no(받아오는거)사용자가 지정한 데이터속성을 지정하는거
 		tr.addEventListener('dblclick', modifyRow);
-		props.forEach(prop => { //<tr><td>id</td><td>first_name</td><td>email</td><td>salary</td></tr>
+		props.forEach(prop => { //<tr><td>id</td><td>first_name</td><td>email</td><td>salary</td><td><button>삭제</button></td></tr>
 			let td = document.createElement('td');
-			td.innerHTML = emp[prop];
+			td.innerHTML = emp[prop]; 
 			tr.appendChild(td); 
 		});
 		let td = document.createElement('td');
@@ -63,38 +63,41 @@ function makeRow(emp = {}){ //데이터 한 건 들어오면 기능하게끔
 		btn.innerHTML = '삭제'; 
 		btn.addEventListener('click', deleteRow);
 		td.appendChild(btn);
-		tr.appendChild(td); //<tr><td><btn>삭제</btn></td></tr>
+		tr.appendChild(td); 
 		
-		return tr;
+		return tr; 
 } //end of makeRow 
 
 //화면 수정 함수
 function modifyRow(){
 	let originMail = this.children[2].innerText;
 	let originSalary = this.children[3].innerText;
-	let oldTr = this;
+	let oldTr = this; //tr :this
+	//console.log(oldTr);
 	let newTr = this.cloneNode(true); //true 넣어주면 하위요소까지 다 복제돼
 	
 	//console.log(tr);
 	newTr.querySelector('td:nth-of-type(3)').innerHTML = '<input value="' + originMail + '">';
 	newTr.querySelector('td:nth-of-type(4)').innerHTML = '<input value="' + originSalary + '">';
-	newTr.querySelector('button').innerText = '수정';
+	newTr.querySelector('button').innerText = '수정'; //삭제 -> 수정 버튼안의 내용을 바꾸기위해
 	newTr.querySelector('button').addEventListener('click', updateRow); //click은 tr
 	console.log(newTr);
-	oldTr.parentElement.replaceChild(newTr, oldTr); //parentElement가 tbody
+	oldTr.parentElement.replaceChild(newTr, oldTr); //parentElement가 tbody/*노드를 교체한다/append못써 삭제못하니까
 }
 
 //updateRow
 function updateRow(){
 	let oldTr = this.parentElement.parentElement;
-	let empNo = this.parentElement.parentElement.dataset.no; //data-no -> dataset.no ..../버튼의 상위요소
-	let email = this.parentElement.parentElement.children[2].children[0].value;
+	console.log(this); //button :this
+	console.log(oldTr); //tr
+	let empNo = this.parentElement.parentElement.dataset.no; //data-no -> dataset.no ..../버튼의 상위요소:emp.empNo
+	let email = this.parentElement.parentElement.children[2].children[0].value; //td의 input값 
 	let salary = this.parentElement.parentElement.children[3].children[0].value;
 	console.log(empNo,email,salary);
 	
 	const editHtp = new XMLHttpRequest();
 	editHtp.open('get', '../empsave.json?job=edit&empNo=' + empNo + '&salary=' + salary + '&email=' + email); //값을 넘겨받는다는 =?
-	editHtp.send();
+	editHtp.send(); //get(url) 바꿔줘야할게 있으니까 
 	editHtp.onload = function(){
 		let result = JSON.parse(editHtp.responseText);
 		console.log(result);
@@ -102,12 +105,7 @@ function updateRow(){
 			
 			//다시 원래대로 수정버튼 -> 삭제버튼!!! 이거 다시하기
 			let newTr = makeRow(result.retVal);
-			//newTr.querySelector('td:nth-of-type(3)').innerHTML = '<input value="' + originMail + '">';
-			//newTr.querySelector('button').innerText = '삭제';
-			//newTr.querySelector('button').addEventListener('change', updateRow);
-			//console.log(newTr);
-			
-			//let oldTr = this;
+
 			oldTr.parentElement.replaceChild(newTr,oldTr); 
 		}
 	}

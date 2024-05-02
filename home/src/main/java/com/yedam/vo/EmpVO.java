@@ -1,7 +1,7 @@
 package com.yedam.vo;
 
 import lombok.Data;
-//VO
+//VO-필드들만 모아놓은 클래스
 //lombok:이클립스에 설치, 라이브러리 필요
 
 @Data

@@ -10,7 +10,7 @@ const obj = { //new Object(); -객체만듦
 	},
 	empList: function(){ //메소드 하나더 선언(익명함수..?)
 		//Ajax (목금 수업할것)
-		fetch('../empList.json') //보내는거
+		fetch('../empList.json') //자바 컨트롤러로 보내는거
 		.then(function(result){ //then 메소드
 			return result.json(); //json 문자열 -> 객체 변환시켜줌 :then
 		})

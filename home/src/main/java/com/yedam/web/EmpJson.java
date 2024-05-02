@@ -22,10 +22,14 @@ public class EmpJson extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//추가(add), 수정(edit), 삭제(delete) 기능(원래는 각각의 기능에 servlet이 있으면 좋아)
 		//삭제기능(사원번호 emp.html에서 파라미터 수신)
-		String job = req.getParameter("job");
+		String job = req.getParameter("job"); //Parameter 매개변수 job의 매개변수 가져와줘 job에 추가 수정 삭제가 들어갈수있다 
 		String eno = req.getParameter("empNo"); //이렇게 3개 왜 위로 보내셨지..?
 		String c = req.getParameter("salary");
 		String e = req.getParameter("email");
+		System.out.println(job);
+		System.out.println(eno);
+		System.out.println(c);
+		System.out.println(e);
 		
 		EmpDAO edao = new EmpDAO();
 		EmpVO evo = new EmpVO();
@@ -66,8 +70,7 @@ public class EmpJson extends HttpServlet{
 			evo.setSalary(Integer.parseInt(c));
 			evo.setEmail(e);
 			
-			
-			if(edao.updateEmp(evo)) {//*
+			if(edao.updateEmp(evo)) { //성공값 /empDAO와 왔다갔다
 				evo = edao.selectEmp(evo.getEmpNo());
 				map.put("retCode", "OK"); 
 				map.put("retVal", evo);
@@ -75,8 +78,8 @@ public class EmpJson extends HttpServlet{
 				map.put("retCode", "NG");
 				map.put("retVal", null);
 			}
-			resp.getWriter().print(gson.toJson(map));
-			//
+			resp.getWriter().print(gson.toJson(map)); 
+			
 		}else if(job.equals("delete")){
 			eno = req.getParameter("empNo"); //getParameter 얘는 무조건 string타입이라 /?뒤의 값이 empNo말하는거같은데..
 			

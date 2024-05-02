@@ -14,7 +14,7 @@ import com.yedam.dao.EmpDAO;
 
 @WebServlet("/empList.json")
 public class EmpListJson extends HttpServlet{
-
+	//메소드 모아놓은거
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
