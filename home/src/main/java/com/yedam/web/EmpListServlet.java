@@ -18,6 +18,7 @@ import com.yedam.dao.EmpDAO;
 //제어의 역전 
 @WebServlet("/empList.action") //웹에 http://localhost:8080/home에 붙여넣으면 자바코드 실행됨-데이터베이스 정보를 가져와서 
 public class EmpListServlet extends HttpServlet { //servlet 클래스 서블릿이 무엇인가,왜
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { //요청과 응답
 		//web browser에 출력

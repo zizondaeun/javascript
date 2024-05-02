@@ -18,7 +18,7 @@ genderAry.forEach(gender => {
 function makeList(ary = []){
 	let obj = {id: 1, first_name: '', last_name: '', email: '', gender: '', salary: ''}
 	let props = ['id', 'first_name', 'email', 'salary','gender'];
-	
+	//*document.querySelector('#show tbody').innerHTML = ""; //기존목록지우기(밑에 교수님방식으로 할때 makeList목록 지워주는거 ) 
 	ary.forEach(emp => {
 		//한 건에 대한 처리
 		let tr = document.createElement('tr'); 
@@ -33,7 +33,7 @@ function makeList(ary = []){
 
 makeList(empList);
 makeHeader(); 
-//연습)html에 thead안에 tr,th만드는거
+//호현씨연습)html에 thead안에 tr,th만드는거
 function makeHeader(){
 	let emps = [ 'no', 'name', 'email', 'salary','gender' ];
 	let tr = document.createElement('tr'); //let tr = <tr></tr>
@@ -45,7 +45,7 @@ function makeHeader(){
 	document.querySelector('#show thead').appendChild(tr);
 }
 
-//과제)체인지 박스의 값과 테이블의 값이(gender) 같은게 나오게
+//교수님과제)체인지 박스의 값과 테이블의 값이(gender) 같은게 나오게
 let chk = false; //체인지이벤트 위에서 변수선언한 이유는 처음때만 makeList가 안보이게 하려고 밖에 선언한거야
 document.querySelector('#genderList').addEventListener('change',function(){
 	//console.log(document.querySelector('#genderList')); 이벤트가 잘작동하는지 콘솔로 확인
@@ -68,6 +68,11 @@ document.querySelector('#genderList').addEventListener('change',function(){
 	chk = true; //3. /이거 위치
 })
 
+//교수님 방법(filter방식으로 해보기)
+//document.querySelector('#genderList').addEventListener('change',function(){
+//	let filterAry = empList.filter(emp => emp.gender == this.value); //emp라는 (매개)변수를 받아서
+//	makeList(filterAry); //makeList 위에서 지워주는거 했음(주석처리*)
+//});
 
 
 
