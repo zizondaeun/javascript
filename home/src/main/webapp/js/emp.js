@@ -11,7 +11,7 @@ function initForm(){
 	xhtp.open('get','../empJson.json'); //*엄청 중요)empJson.json라는 url /../
 	xhtp.send(); //메소드로 결과받아와서
 	xhtp.onload = function(){
-		let data = JSON.parse(xhtp.responseText); //여기에 값을 받아 
+		let data = JSON.parse(xhtp.responseText); //여기에 값을 받아 /responseText라는 속성을 
 		console.log(data); //th불러옴
 		data.forEach(emp => {
 			let tr = makeRow(emp); //
@@ -23,7 +23,7 @@ function initForm(){
 	
 } //end of initForm
 
-function addRow(){ //위의 addRow를 함수로
+function addRow(){ //위의 addRow를 함수로 
 	//db insert & 화면출력
 	const addHtp = new XMLHttpRequest();
 	//사원이름(ename),연락처(phone),급여(salary),입사일자(hire),이메일(email) /괄호안에 있는것들을 파라메터로 
@@ -33,10 +33,13 @@ function addRow(){ //위의 addRow를 함수로
 	let edate = document.querySelector('#edate').value;
 	let email = document.querySelector('#email').value;
 	
-	let param = '../empsave.json?job=add&name=' + ename + '&phone=' + ephone //job라는 파라메터/이거 모르겠어
+	let param = 'job=add&name=' + ename + '&phone=' + ephone //job이 add야 / 앞쪽에 ../empsave.json?이거 지우고 post타입으로
 								+ '&salary=' + esalary + '&date=' + edate + '&email=' + email; //문자열이니까 변수로 선언해도 됨
-	addHtp.open('get',param);
-	addHtp.send();
+								
+	//addHtp.open('get',param); //get방식(header에)은 서버로 전달할수있는 데이터 제한이 있어서 post방식(body에)으로 하는게 낫다(데이터 제한이 없어)  
+	addHtp.open('post','../empsave.json'); 
+	addHtp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //키,밸류 방식으로 넘기겠다(/ 뒤에 json방식으로 가능)
+	addHtp.send(param);
 	addHtp.onload = function(){
 		let result = JSON.parse(addHtp.responseText);
 		console.log(result); //꼭 확인해보기
@@ -82,8 +85,8 @@ function modifyRow(){
 	newTr.querySelector('button').innerText = '수정'; //삭제 -> 수정 버튼안의 내용을 바꾸기위해
 	newTr.querySelector('button').addEventListener('click', updateRow); //click은 tr
 	console.log(newTr);
-	oldTr.parentElement.replaceChild(newTr, oldTr); //parentElement가 tbody/*노드를 교체한다/append못써 삭제못하니까
-}
+	oldTr.parentElement.replaceChild(newTr, oldTr); //parentElement가 tbody/*노드를 교체한다/append못써 삭제못하니까(계속 추가되기만 하니까)
+}//end of modifyRow 
 
 //updateRow
 function updateRow(){
@@ -109,7 +112,7 @@ function updateRow(){
 			oldTr.parentElement.replaceChild(newTr,oldTr); 
 		}
 	}
-}
+}//end of updateRow
 
 function deleteRow(){
 	const delNo = this.parentElement.parentElement.children[0].innerText;
