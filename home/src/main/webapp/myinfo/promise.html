@@ -19,7 +19,7 @@
 			return 'Second!';
 		}) 
 		.then(function(data){ //비동기적인 방식인것을 순차적으로 기능하기 위해 마치 동기방식처럼/위에서 반환한값을 받아서 ~ 순차적으로 내려가(promise)
-			console.log('date: ', data);
+			console.log('date: ', data); //비동기를 더 잘 쓰기위해서
 			return 'Third';
 		})
 		.then(function(output){

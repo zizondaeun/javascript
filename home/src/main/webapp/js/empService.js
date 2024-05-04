@@ -1,16 +1,16 @@
 /**
 *empService.js => 목록, 추가, 수정, 삭제 기능 객체
 */
-
+//통신
 const svc = {
-	//목록
+	//목록/empfetch에서 얘를 부르기만 했고
 	empList: function(successCall, errorCall) {
 		fetch('../empJson.json')
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
 	},
-	//등록 (목록 방식이나 이거나 선택해서 해)
+	//등록 (목록 방식이나 이거나 선택해서 해)/addemp에서는 param ={}로 값을 받아
 	addEmp(param = {}, successCall, errorCall) { //초기값으로 객체를 넘기겠다
 		fetch('../empsave.json', { //옵션객체{}
 			method: 'post',
@@ -34,12 +34,10 @@ const svc = {
 			.catch(errorCall)
 	},
 	//삭제
-	deleteEmp(eno = 1, successCall, errorCall) {
+	deleteEmp(eno, successCall, errorCall){
 		fetch('../empsave.json?job=delete&empNo=' + eno)
 			.then(result => result.json())
 			.then(successCall)
-			.catch(errorCall)
-
+			.catch(errorCall);
 	}
-
 }

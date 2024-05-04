@@ -114,7 +114,6 @@ function editRow(){
 	})
 }
 
-
 //thead inputp[type="checkbox"]
 document.querySelector('thead input[type="checkbox"]')//
 .addEventListener('change', function(){
@@ -128,6 +127,5 @@ document.querySelector('thead input[type="checkbox"]')//
 		.forEach(function(item){ 
 			console.log(this);
 			item.checked = inp.checked;
-			
 		})
 })

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", initForm); //content가 로딩되�
 
 //화면 로딩 후 처름 실행할 함수 /목록부르는거
 function initForm(){
-	//Ajax호출
+	//Ajax호출(1.)
 	const xhtp = new XMLHttpRequest();
 	xhtp.open('get','../empJson.json'); //*엄청 중요)empJson.json라는 url /../
 	xhtp.send(); //메소드로 결과받아와서

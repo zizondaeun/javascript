@@ -2,7 +2,7 @@
 *empFetch.js Ajax 기능을 fetch함수 활용
 *empSvc 객체에 기능을 구현. 메소드를 호출
 */
-//empjs보다 empfetch가 간단하대(아마 xmp .. 그거보다 fetch가 간단하다는 말인듯)
+//empjs보다 empfetch가 간단하대(아마 xmp .. 그거보다 fetch가 간단하다는 말인듯)(2.)
 document.addEventListener("DOMContentLoaded", initForm); //content가 로딩되면 initform이 처음 실행할 함수
 
 function initForm() {
@@ -13,7 +13,7 @@ function initForm() {
 		//	console.log(result);
 		//	return result.json(); //출력스트림(json) -> 객체 변환 /response결과나오고
 		//}) //result 하는 매개값을 받아서 {}실행하겠다
-		.then(data => {
+		.then(data => { //result 가 data 로 들어감
 			//console.log(data); //배열나옴
 			data.forEach(emp => {
 				let tr = makeRow(emp); //
@@ -81,11 +81,11 @@ function addRow() { //위의 addRow를 함수로
 		+ '&salary=' + esalary + '&date=' + edate + '&email=' + email;
 
 	fetch('../empsave.json', { //옵션객체{}
-		method: 'post',
+		method: 'post', //유튭이랑 로그인이랑 생각해보면 됨(url)
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: param
+		body: param 
 	})
-		.then(result => result.json())
+		.then(result => result.json()) //자바가서 메소드호출해서 등등
 		.then(data => {
 			if (data.retCode == 'OK') {
 				let tr = makeRow(data.retVal); //리턴밸류가 실제값을 가지고 있음
@@ -116,7 +116,7 @@ function modifyRow() {
 //updateRow
 function updateRow() {
 	let oldTr = this.parentElement.parentElement;
-	console.log(this); //button :this
+	console.log(this); //button:this
 	console.log(oldTr); //tr
 	let empNo = this.parentElement.parentElement.dataset.no; //data-no -> dataset.no ..../버튼의 상위요소:emp.empNo
 	let email = this.parentElement.parentElement.children[2].children[0].value; //td의 input값 
