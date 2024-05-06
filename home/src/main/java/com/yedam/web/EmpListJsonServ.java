@@ -14,13 +14,13 @@ import com.google.gson.GsonBuilder;
 import com.yedam.dao.EmpDAO;
 import com.yedam.vo.EmpVO;
 
-@WebServlet("/empJson.json")
+@WebServlet("/empJson.json") //Servlet: 클라이언트로부터 요청이 오면 해당 요청에 대한 처리를 담당하는 클래스
 public class EmpListJsonServ extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//사원목록을 json문자열로 출력.
-		//Gson 라이브러리 활용해서 json생성
+		//Gson 라이브러리 활용해서 json생성(Gson 라이브러리를 사용해 자바 객체를 JSON 문자열로 변환)
 		
 		resp.setContentType("text/json;charset=utf-8"); //한글 인코딩 하기위해
 		

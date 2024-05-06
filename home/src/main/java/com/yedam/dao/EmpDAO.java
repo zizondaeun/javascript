@@ -10,9 +10,14 @@ import com.yedam.common.DAO;
 import com.yedam.vo.EmpVO;
 
 public class EmpDAO extends DAO {
-	public List<Map<String, Object>> empList() {
+	//<Map<String, Object>> map은 key와 value를 가진 컬렉션의 종류
+	//Object는 자바에서 모든 클래스의 부모 클래스입니다. 
+	//즉, 모든 자바 객체는 Object 클래스의 하위 클래스입니다. 
+	//이것은 모든 종류의 객체를 저장할 수 있는 map을 만들기 위해 Object 타입을 사용하는 것입니다.
+	
+	public List<Map<String, Object>> empList() { 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		conn();
+		conn(); //conn() 메소드 호출은 데이터베이스에 대한 연결하는 역할.
 		try {
 			psmt = conn.prepareStatement("select * from emp");
 			rs = psmt.executeQuery();
@@ -26,13 +31,17 @@ public class EmpDAO extends DAO {
 				list.add(map);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); //예외가 발생했을 때 발생한 예외의 스택 트레이스를 출력하는 메소드
+			//어떤 메소드에서 어떤 예외가 발생했는지,예외가 발생한 이유를 추적할수 있음
 		} finally {
-			disCon();
+			disCon(); //disCon() 메소드 호출은 데이터베이스 연결을 닫는 역할. (안전하게 종료하는 것을 보장하기 위함)
 		}
 		return list;
 	}
-
+	
+	//메소드를 사용하여 데이터베이스 작업을 캡슐화하는 이유(select,insert,update,delete)
+	//데이터베이스 작업을 메소드로 추상화하면 코드의 가독성, 유지보수성, 재사용성이 향상되며, 에러 처리와 예외 처리도 효율적으로 관리가능
+	
 	// 목록 가져오기 List<EmpVO> selectList();
 	public List<EmpVO> selectList() {
 		List<EmpVO> list = new ArrayList<EmpVO>();
