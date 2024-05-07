@@ -56,17 +56,18 @@ function makeRow(book = {}){
 	let tr = document.createElement('tr');
 	tr.setAttribute('data-no', book.code);
 	//console.log(book.code);
-	props.forEach(prop => {
-		let td = document.createElement('td');
-		td.innerHTML = book[prop];
-		tr.appendChild(td);
-	});
 	//삭제 체크박스
 	let td2 = document.createElement('td');
 	let ckb = document.createElement('input');
 	ckb.setAttribute('type', 'checkBox');
 	td2.appendChild(ckb);
 	tr.appendChild(td2);
+	
+	props.forEach(prop => {
+		let td = document.createElement('td');
+		td.innerHTML = book[prop];
+		tr.appendChild(td);
+	});
 	
 	//삭제버튼
 	let td = document.createElement('td');
