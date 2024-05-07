@@ -34,7 +34,7 @@
 	<script>
 	const table = new DataTable('#example', {
 	    ajax: '../empdatatable.json' //서블릿을 작성하고 url 패턴도 작성해보기(../) /웹확인(fetch안쓰고)
-	});
+	}); //위에 링크없으면 ajax실행안돼
 	let eno = -1;
 	
 	table.on('click', 'tbody tr', (e) => {
@@ -61,7 +61,7 @@
 		.then(result => {
 			if(result.retCode == 'OK'){
 				table.row('.selected').remove().draw(false);
-				eno = -1; //??
+				eno = -1; //값이 없는 상태로 돌려
 			}else{
 				alert('처리 중 에러');
 			}

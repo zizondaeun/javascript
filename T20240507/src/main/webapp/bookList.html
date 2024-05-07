@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/book.js"></script>
+
 </head>
 <body>
   <h3>도서관리</h3>
   <div id="register">
   <table border="1">
    		<tr>
-  			<th>도서코드</th><td><input type="text" id="code"></td>
+  			<th>도서코드</th><td><input type="text" id="code" value=""></td>
   		</tr>
   		<tr>
-  			<th>도서명</th><td><input type="text" id="bookName"></td>
+  			<th>도서명</th><td><input type="text" id="bookName" value=""></td>
   		</tr>
   		<tr>
-  			<th>저자</th><td><input type="text" id="authorName"></td>
+  			<th>저자</th><td><input type="text" id="authorName" value=""></td>
   		</tr>
   		<tr>
-  			<th>출판사</th><td><input type="text" id="press"></td>
+  			<th>출판사</th><td><input type="text" id="press" value=""></td>
   		</tr>
   		<tr>
-  			<th>금액</th><td><input type="text" id="price"></td>
+  			<th>금액</th><td><input type="text" id="price" value=""></td>
   		</tr>
   		<tr align="center">
   			<td colspan="2">
@@ -36,14 +36,23 @@
   <!-- 도서목록 -->
   <!-- data.json넣어서/화면만 컨트롤 하게/등록 삭제 둘다 화면만 삭제되도록 db는 안만져도 돼, servlet도 팔요 없어 -->
   <!-- fetch -->
-  <div id="list">
-  <table border="1">
-  	<thead>
-  		<tr>
-  			<th><input type="checkBox"></th><th>도서코드</th><th>도서명</th><th>저자</th><th>출판사</th><th>가격</th><th>삭제</th>
-  		</tr>
-  	</thead>  
-  </table>
-  </div>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th><input type="checkBox"></th>
+					<th>도서코드</th>
+					<th>도서명</th>
+					<th>저자</th>
+					<th>출판사</th>
+					<th>가격</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+			</tbody>
+		</table>
+	<!-- <script src="js/book.js"></script> -->
+	<script src="js/book1.js"></script>
 </body>
 </html>

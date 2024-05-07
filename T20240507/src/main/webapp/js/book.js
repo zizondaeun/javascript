@@ -1,7 +1,6 @@
 /**
  * 
  */
-//console.log('start');
 
 document.addEventListener("DOMContentLoaded", initForm);
 //booklist불러오는거
@@ -24,101 +23,77 @@ function initForm(){
 	document.querySelector('#selDel').addEventListener('click',function(){
 		let tr = document.querySelectorAll('#list tr');
 		tr.forEach(content => {
-			let checked = content.children[5].children[0].checked;
+			let checked = content.children[0].children[0].checked;
 			//console.log(checked);
 			if(checked){
-				let no = content.children[0].innerHTML;
-				deleteRow(no,
-				data => {
-					if(data.retCode =='OK') {
-							content.remove();
-						} else if (data.retCode == 'NG') {
-							alert('처리 실패');
-						}
-				})
+				content.remove();
 			}
+			
 		})
 	})
 }//end of initForm
 
-//체크박스 전체삭제
-document.querySelector('div input[type="checkbox"]').addEventListener('change',function(){
-	let inp = this;
-	document.querySelectorAll('div input[type="checkbox"]')
-		.forEach(function(book){
-			book.checked = inp.checked;
-		})
-})
-
-function makeRow(book = {}){
-	let props = ['code', 'book_name', 'author_name', 'press', 'price'];
-	//{"code":"P12301285","book_name":"이것이자바다","author_name":"홍성문","press":"신흥출판사","price":25000},
-	let tr = document.createElement('tr');
-	tr.setAttribute('data-no', book.code);
-	//console.log(book.code);
-	//삭제 체크박스
-	let td2 = document.createElement('td');
-	let ckb = document.createElement('input');
-	ckb.setAttribute('type', 'checkBox');
-	td2.appendChild(ckb);
-	tr.appendChild(td2);
-	
-	props.forEach(prop => {
-		let td = document.createElement('td');
-		td.innerHTML = book[prop];
-		tr.appendChild(td);
-	});
-	
-	//삭제버튼
-	let td = document.createElement('td');
-	let btn = document.createElement('button');
-	btn.innerHTML = '삭제';
-	btn.addEventListener('click',deleteRow);
-	td.appendChild(btn);
-	tr.appendChild(td);
-	
-	return tr;
-}//end of makeRow 
-
-//등록
+//저장
 function addRow(){
 	let code = document.querySelector('#code').value;
 	let bName = document.querySelector('#bookName').value;
 	let aName = document.querySelector('#authorName').value;
 	let press = document.querySelector('#press').value;
 	let price = document.querySelector('#price').value;
-	let param = 'add&code=' + code + '&bookName=' + bName + '&authorName=' + aName 
-				+ '&press' + press + '&price' + price;
 	
-	fetch('data/data.json', {
-		method: 'post',
-		hearders: {'Conetent-Type': 'application/x-www-form-urlencoded'},
-		body: param
-	})
-		.then(result => result.json())
-		.then(data => {
-			if(data.retCode == 'OK'){
-				let tr = makeRow(data.retVal);
-				document.querySelector('#list').appendChild(tr);
-			}
-		})
-		.catch(console.log);
+	const book = { code, bName, aName, press, price };
+	let tr = makeRow(book);
+	//초기
+	document.querySelector('#list').appendChild(tr);
+	document.querySelector('#code').value = "";
+	document.querySelector('#bookName').value = "";
+	document.querySelector('#authorName').value = "";
+	document.querySelector('#press').value = "";
+	document.querySelector('#price').value = "";
 }//end of addRow
+
+//체크박스 전체삭제
+document.querySelector('thead input[type="checkbox"]').addEventListener('change',function(){
+	let inp = this;
+	document.querySelectorAll('tbody input[type="checkbox"]')
+		.forEach(function(book){
+			book.checked = inp.checked;
+		})
+})
+
+//저장
+function makeRow(book = { code, book_name, author_name, press, price }){
+	let tr = document.createElement('tr');
+	
+	//삭제 체크박스
+	let td = document.createElement('td');
+	let ckb = document.createElement('input');
+	ckb.setAttribute('type', 'checkBox');
+	td.appendChild(ckb);
+	tr.appendChild(td);
+	
+	for (let prop in book) { 
+		let td = document.createElement('td');
+		td.innerText = book[prop]; 
+		tr.appendChild(td); 
+	}
+	
+	//삭제버튼
+	td = document.createElement('td');
+	let btn = document.createElement('button');
+	btn.innerHTML = '삭제';
+	btn.addEventListener('click', deleteRow);
+	td.appendChild(btn);
+	tr.appendChild(td);
+	
+	return tr;
+}//end of makeRow 
 
 //삭제
 function deleteRow(){
-	let no = this.parentElement.parentElement.dataset.no;
-	let tr = this.parentElement.parentElement;
-	fetch('data/data.json?=delete&code=' + no) //??
-		.then(result => result.json())
-		.then(data => {
-			if(data.retCode == 'OK'){
-				tr.remove();
-			}else if(data.retCode == 'NG'){
-				alert('처리실패');
-			}
-		})
-		.catch(err => console.log(err));
+	let no = this.parentElement.parentElement;
+	console.log(no);
+	no.remove();
 }
 
 

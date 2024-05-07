@@ -32,6 +32,4 @@ public class EmpDataTableServ extends HttpServlet{
 		//System.out.println(json); //json 이쁘게 나오는지 확인하고 웹에서 확인해보기
 		resp.getWriter().println(json);
 	}
-		
-	
 }

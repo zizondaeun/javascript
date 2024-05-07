@@ -18,7 +18,7 @@ function addMemberFnc(){
 	let tr = makeRow(mem);
 	//-<tr생성>있던 자리
 	//document.querySelector('table:nth-of-type(2) tbody');
-	document.querySelector('table#tlist tbody').appendChild(tr); //tlist의 tbody를 가져옴
+	document.querySelector('table #tlist tbody').appendChild(tr); //tlist의 tbody를 가져옴
 	
 	//editRow();
 	
