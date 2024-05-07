@@ -32,9 +32,9 @@ function initForm() {
 				svc.deleteEmp(eno,
 					data => {
 						console.log(data); //f5를 눌러야만 삭제가 되니까
-						if(data.retCode == 'OK') { //삭제된 정보가 db에 넘어가고 바로 삭제될수있도록 하기 위해
+						if (data.retCode == 'OK') { //삭제된 정보가 db에 넘어가고 바로 삭제될수있도록 하기 위해
 							content.remove();
-						}else if(data.retCode == 'NG') {
+						} else if (data.retCode == 'NG') {
 							alert('처리 실패!');
 						}
 					})

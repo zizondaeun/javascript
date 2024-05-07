@@ -9,7 +9,7 @@
 	<div id="map" style="width: 100%; height: 450px;"></div>
 
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fc7983502900154ea45323331c6dbcc7"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08b951fd47ebb7aecbf2504803290aec"></script>
 		<!-- 08b951fd47ebb7aecbf2504803290aec 학원-->
 		<!-- fc7983502900154ea45323331c6dbcc7 집--> 
 		<!-- 문제는 이제 지도도 뜨고 길찾기는 되는데 큰지도보기가 안되네..화요일에 교수님한테 물어보기 -->
@@ -58,7 +58,7 @@
 
 		var iwContent = '<div style="padding:5px;">'
 				+ name
-				+ '<br><a href="https://map.kakao.com/link/map/"'+name+','+lat+','+lng+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+lat+','+lng+'" style="color:blue" target="_blank">길찾기</a></div>',  // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				+ '<br><a href="https://map.kakao.com/link/map/'+ name+','+lat+','+lng+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+name+','+lat+','+lng+'" style="color:blue" target="_blank">길찾기</a></div>',  // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 		iwPosition = new kakao.maps.LatLng(lat, lng); //인포윈도우 표시 위치입니다
 
 		//console.log(iwContent.name);

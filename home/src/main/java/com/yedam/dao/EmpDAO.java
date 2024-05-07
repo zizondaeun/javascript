@@ -175,5 +175,79 @@ public class EmpDAO extends DAO {
 		}
 		return false;
 	}
+	
+	//부서별 인원 현황 메소드. 부서: 인원 현황
+	public Map<String, Integer> getCntPerDept(){
+		conn();
+		Map<String, Integer> map = new HashMap<>();
+		String sql = " select d.department_name " //부서정보 /String:department_name, Integer:count(1)
+				+ "        , count(1) as cnt " //cnt
+				+ " from hr.employees e "
+				+ " join hr.departments d "
+				+ " on e.department_id = d.department_id "
+				+ " group by d.department_name";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString("department_name"), rs.getInt("cnt"));
+				
+			}
+		}catch (SQLException e) {
+			e.printStackTrace(); 
+		} finally {
+			disCon(); 
+		}
+		return map;
+	}
+	
+	//datatable 생성예제
+	public List<List<String>> getDataTable(){ //json의 데이터값들을 보니 list의 문자타입으로 하면 될거같아서
+		List<List<String>> list = new ArrayList<List<String>>(); //처음부터 map컬렉션으로 할수는 없는지?
+		conn();
+		String sql = " select e.* "
+				+ " from hr.employees e";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				List<String> row = new ArrayList<>();
+				row.add(rs.getString("employee_id"));
+				row.add(rs.getString("first_name"));
+				row.add(rs.getString("email"));
+				row.add(rs.getString("phone_number"));
+				row.add(rs.getString("salary"));
+				
+				list.add(row);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace(); 
+		} finally {
+			disCon(); 
+		}
+		return list;
+	}
+	
+	//jsp에 있는 employees 테이블의 사원번호값을 찾아서 한건 삭제하는 기능 추가하기
+	public boolean deleteEmployee(int eno){
+		conn();
+		String sql = " delete from employees "
+				+ " where employee_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, eno); //맞나?
+
+			int r = psmt.executeUpdate();
+			if (r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disCon();
+		}
+		return false; //이렇게 하고 db에서도 실제로 지워졌는지 다시 확인해보기
+	}
+
 
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- myinfo/chart.html -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+    let dataAry = []; //값이 없으니까
+    //패치쓰려면 꼭 서블릿있어야함.EmpCntDeptServ
+    fetch('../getCntPerDept.do') //서버에 데이터를 요청하고 결과 가지고 오고나서 google로
+		.then(result => result.json())
+		.then(result => {
+			console.log(result);
+			dataAry.push(['Dept', 'countPerDept']); //dataAry 에 값을 넣어주기 위함
+			for(let prop in result){ //result가 갖고 있는 for in 반복문 돌려
+				dataAry.push([prop, result[prop]]); //키, 밸류
+			}
+			console.log(dataAry); 
+		    google.charts.load('current', {'packages':['corechart']});
+		    google.charts.setOnLoadCallback(drawChart); 
+		})
+		.catch(err => console.log(err)); 
+		
+	  //얘를 실행
+      //google.charts.load('current', {'packages':['corechart']});
+      //google.charts.setOnLoadCallback(drawChart); //setOnLoadCallback의 매개변수로 drawChart 기능 써
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(dataAry); //배열값으로 데이터를 넣어둠[[], [], []] 배열안의 배열
+
+        var options = {
+          title: '부서별 인원 현황' 
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options); //draw가 차트를 그려줌
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
