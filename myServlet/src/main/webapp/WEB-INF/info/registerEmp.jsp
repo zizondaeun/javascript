@@ -13,7 +13,7 @@
 		<table border="2"><!-- 민감한 내용 url에 안보이게 하는 방식:post -->
 			<tr>
 				<th>사원번호</th>
-				<td><input type="number" name="eid"></td>
+				<td><input type="number" name="eid"></td><!-- name의 값이 백으로 넘어가므로 어떻게 쓰는지 꼭 기억하기 -->
 			</tr>
 			<tr>
 				<th>사원명</th>
@@ -32,7 +32,7 @@
 				<td><input type="text" name="job"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit"></td>
+				<td colspan="2"><input type="submit"></td><!-- submit클릭하면 addEmp.do 백으로 보내는... -->
 			</tr>
 		</table>
 	</form>

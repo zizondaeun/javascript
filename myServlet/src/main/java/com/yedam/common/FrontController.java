@@ -27,7 +27,7 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		//url 패턴과 실행할 control 인터페이스의 구현클래스를 정의 
-		map.put("/abc.do", new ABCControl());
+		map.put("/abc.do", new ABCControl()); ///abc.do가 들어오면 클래스 실행해줘
 		map.put("/info.do", new InfoControl());
 		map.put("/addEmp.do", new AddEmpControl());
 		map.put("/registerEmp.do", new RegisterControl()); //웹 열때 끝에 입력해야 볼수있는거(제한하는거)!!!
@@ -43,9 +43,9 @@ public class FrontController extends HttpServlet{
 		String path = uri.substring(context.length());
 		System.out.println("path: " + path);
 		
-		Control control = map.get(path);
-		control.exec(req, resp);
-		
+		Control control = map.get(path); //control = new AddEmpControl
+		control.exec(req, resp); //여기서 exec는 control 상속받은 addempcontrol의 재정의된 exec임
+		//서비스의 req,resp를 가지고 exec를 실행해
 	}
 	//destroy
 	@Override

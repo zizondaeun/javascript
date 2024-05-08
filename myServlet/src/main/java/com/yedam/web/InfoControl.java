@@ -29,7 +29,7 @@ public class InfoControl implements Control {
 		
 		SqlSession session = DataSource.getInstance().openSession(true); //true 가 커밋
 		EmpMapper mapper = session.getMapper(EmpMapper.class); //목록가져오는 기능
-		List<EmployeeVO> list = mapper.selectEmp(); //전체목록 다 가져오는기능
+		List<EmployeeVO> list = mapper.selectEmp(); //전체목록 다 가져오는기능 /맵퍼에서 호출한게 여기로 와 그리고 list에 담는거지
 		req.setAttribute("elist", list); //list가 반환해주는 값을 "elist"가 받아
 		
 		//System.out.println("address: " + req);

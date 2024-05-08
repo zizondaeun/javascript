@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.EmpMapper">
 
-  <select id="selectEmp" resultType="com.yedam.vo.EmployeeVO">
+  <select id="selectEmp" resultType="com.yedam.vo.EmployeeVO"> <!-- resultType는 return반환 -->
     select * from employees <!--db안쓰고 쿼리 이용해서 db내용 가져오는거인듯-->
   </select>
   
@@ -13,7 +13,7 @@
   	values(#{employeeId}, #{firstName}, #{lastName} , #{email}, sysdate, #{jobId})
   </insert>
   
-  <delete id="deleteEmp" parameterType="int">
+  <delete id="deleteEmp" parameterType="int"> <!-- parameterType는 받는거 -->
   	delete from employees 
   	where employee_id = #{employeeId}
   </delete>

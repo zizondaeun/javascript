@@ -17,7 +17,7 @@ public class AddEmpControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String a = req.getParameter("eid");
+		String a = req.getParameter("eid"); //registerEmp.jsp의 name의 값과 꼭 같아야함!!!*****
 		String b = req.getParameter("first_name");
 		String c = req.getParameter("last_name");
 		String d = req.getParameter("email");
@@ -29,7 +29,7 @@ public class AddEmpControl implements Control {
 		vo.setLastName(c);
 		vo.setEmail(d);
 		vo.setJobId(e);
-		
+		//sql연동하는거
 		SqlSession session = DataSource.getInstance().openSession(true); //true 가 커밋
 		EmpMapper mapper = session.getMapper(EmpMapper.class);
 		
