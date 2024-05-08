@@ -1,5 +1,7 @@
+//혼자 다시 해본거
 document.addEventListener("DOMContentLoaded", initForm);
 
+//json목록에 있는 데이터 넣기
 function initForm(){
 	fetch('data/data.json') //백이랑 연결하려고 
 	 .then((result) => result.json())

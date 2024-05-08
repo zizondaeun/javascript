@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--jdbc클래스 구현위해-->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.EmpMapper">
+
+  <select id="selectEmp" resultType="com.yedam.vo.EmployeeVO">
+    select * from employees <!--db안쓰고 쿼리 이용해서 db내용 가져오는거인듯-->
+  </select>
+  
+  <insert id="insertEmp" parameterType="emp"> <!-- 애는 타입이 resultType아니고 파마미터타입-->
+  	insert into employees (employee_id, first_name, last_name, email, hire_date, job_id)
+  	values(#{employeeId}, #{firstName}, #{lastName} , #{email}, sysdate, #{jobId})
+  </insert>
+  
+  <delete id="deleteEmp" parameterType="int">
+  	delete from employees 
+  	where employee_id = #{employeeId}
+  </delete>
+  
+  <select id="getEmployee" parameterType="emp">
+ 	select * from employees 
+ 	where employee_id = #{employeeId}
+  </select>
+  
+</mapper>

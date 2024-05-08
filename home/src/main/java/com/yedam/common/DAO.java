@@ -17,7 +17,7 @@ public class DAO {
 	public ResultSet rs;
 
 	public void conn() {
-		String url = "jdbc:oracle:thin:@GRAM:1521:xe"; //GRAM/localhost
+		String url = "jdbc:oracle:thin:@localhost:1521:xe"; //GRAM/localhost
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, "jsp", "jsp");
