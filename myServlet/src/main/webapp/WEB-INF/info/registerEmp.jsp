@@ -8,8 +8,8 @@
 </head>
 <body>
 	<!-- info/registerEmp.jsp -->
-	<h3>사원등록화면</h3>
-	<form action="../addEmp.do" method="post"><!-- 어떤 페이지로 이동하겠다:action -->
+	<h3>사원등록화면</h3><!-- "../addEmp.do" -->
+	<form action="addEmp.do" method="post"><!-- 어떤 페이지로 이동하겠다:action -->
 		<table border="2"><!-- 민감한 내용 url에 안보이게 하는 방식:post -->
 			<tr>
 				<th>사원번호</th>

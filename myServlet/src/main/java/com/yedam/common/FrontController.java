@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.web.ABCControl;
 import com.yedam.web.AddEmpControl;
 import com.yedam.web.InfoControl;
+import com.yedam.web.RegisterControl;
 
 public class FrontController extends HttpServlet{
 	//필드선언
@@ -29,6 +30,7 @@ public class FrontController extends HttpServlet{
 		map.put("/abc.do", new ABCControl());
 		map.put("/info.do", new InfoControl());
 		map.put("/addEmp.do", new AddEmpControl());
+		map.put("/registerEmp.do", new RegisterControl()); //웹 열때 끝에 입력해야 볼수있는거(제한하는거)!!!
 	}
 	//service
 	@Override
