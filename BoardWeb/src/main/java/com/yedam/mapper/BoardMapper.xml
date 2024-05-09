@@ -5,7 +5,7 @@
 <mapper namespace="com.yedam.mapper.BoardMapper">
 
 	<select id="boardList" resultType="board"> <!-- resultType는 return반환 -->
-		select * from tbl_boards <!--db안쓰고 쿼리 이용해서 db내용 가져오는거인듯 -->
+		select * from tbl_boards 
 		order by board_no
 	</select>
 

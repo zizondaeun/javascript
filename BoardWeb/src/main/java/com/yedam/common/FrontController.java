@@ -38,7 +38,7 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		map.put("/addBoard.do", new AddBoardControl()); //등록기능
 		map.put("/boardInfo.do", new BoardInfoControl()); //조회화면
 		//수정관련
-		map.put("/modBoardForm.do", new ModifyFormControl());//수정화면 
+		map.put("/modBoardForm.do", new ModifyFormControl()); //수정화면 
 		map.put("/updateBoard.do", new ModifyControl()); //업데이트랑 목록 /진짜 수정
 		//삭제관련
 		map.put("/removeBoardForm.do", new RemoveFormControl());

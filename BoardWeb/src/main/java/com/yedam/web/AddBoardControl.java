@@ -11,7 +11,7 @@ import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
 
-public class AddBoardControl implements Control { //
+public class AddBoardControl implements Control { 
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { //서비스 기능
@@ -19,7 +19,7 @@ public class AddBoardControl implements Control { //
 		String title = req.getParameter("title"); //addBoard.jsp의 name의 값과 같아야함
 		String content = req.getParameter("content");
 		String writer = req.getParameter("writer");
-		
+		//서비스선언
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);

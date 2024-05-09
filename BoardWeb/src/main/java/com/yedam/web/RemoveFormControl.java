@@ -18,11 +18,11 @@ public class RemoveFormControl implements Control {
 		String bno = req.getParameter("bno");
 		
 		BoardService svc = new BoardServiceImpl();
-		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); //조회기능
+		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); 
 		
 		req.setAttribute("bno", vo);
 		
-		String path = "WEB-INF/board/delBoard.jsp"; //보드 밑에 addBoard.jsp만듦
+		String path = "WEB-INF/board/delBoard.jsp"; 
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 
