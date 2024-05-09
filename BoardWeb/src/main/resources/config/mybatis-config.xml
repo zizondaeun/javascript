@@ -4,10 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="mapUnderscoreToCamelCase" value="true" /> <!-- 카멜케이스 -->
 	</settings>
 	<typeAliases>
-		<typeAlias alias="emp" type="com.yedam.vo.EmployeeVO" />
+		<typeAlias alias="board" type="com.yedam.vo.BoardVO" />
 	</typeAliases>
 		<environments default="development">
 			<environment id="development">
@@ -23,6 +23,6 @@
 			</environment>
 		</environments>
 		<mappers>
-			<mapper resource="com/yedam/mapper/EmpMapper.xml" />
+			<mapper resource="com/yedam/mapper/BoardMapper.xml" />
 		</mappers>
 </configuration>

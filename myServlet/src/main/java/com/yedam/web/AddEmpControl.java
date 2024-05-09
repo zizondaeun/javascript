@@ -33,7 +33,8 @@ public class AddEmpControl implements Control {
 		SqlSession session = DataSource.getInstance().openSession(true); //true 가 커밋
 		EmpMapper mapper = session.getMapper(EmpMapper.class);
 		
-		if(mapper.insertEmp(vo) == 1) {
+		//db로 데이터가 들어간게 성공하면 web 화면에 ok뜸 
+		if(mapper.insertEmp(vo) == 1) { //insert는 값을 int타입으로 반환하기때문에 1아님 실패는 -1로 반환하기때문에 
 			resp.getWriter().print("OK");
 		}else {
 			resp.getWriter().print("Fail");
