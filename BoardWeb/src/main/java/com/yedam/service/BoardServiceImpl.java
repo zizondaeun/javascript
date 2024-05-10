@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedam.common.DataSource;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
+import com.yedam.vo.MemberVO;
 
 public class BoardServiceImpl implements BoardService { //기능구현은 여기서 
 	//해당 서비스 인터페이스를 구현하는 구체적인 클래스
@@ -18,9 +19,14 @@ public class BoardServiceImpl implements BoardService { //기능구현은 여기
 	//이를 편리하게 수행할 수 있도록 매퍼 인터페이스의 구현체를 가져옴
 	
 	@Override
-	public List<BoardVO> boardList() {
-		return mapper.boardList();
+	public List<BoardVO> boardList(int page) { //처음 전체목록을 페이징으로 바꿈
+		return mapper.boardListPaging(page);
 	} 
+	
+	@Override
+		public int getTotal() {
+			return mapper.getTotalCnt();
+	}
 	
 	@Override
 		public boolean addBoard(BoardVO board) {
@@ -46,6 +52,16 @@ public class BoardServiceImpl implements BoardService { //기능구현은 여기
 	@Override
 	public boolean removeBoard(int boardNo) {
 		return mapper.deleteBoard(boardNo) == 1;
+	}
+
+	@Override
+	public MemberVO login(String id, String pw) {
+		return mapper.selectMember(id, pw);
+	}
+
+	@Override
+	public MemberVO checkMember(String id) {
+		return mapper.selectMember2(id); //값이 있으면 null반환..
 	}
 
 }

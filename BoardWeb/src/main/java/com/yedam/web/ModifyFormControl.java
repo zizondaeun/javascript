@@ -16,14 +16,17 @@ public class ModifyFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { //수정기능
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); 
 		
 		req.setAttribute("bno", vo);
+		req.setAttribute("page", page);
 		
 		String path = "WEB-INF/board/editBoard.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
+		
 	}
 
 }

@@ -5,15 +5,31 @@
 <mapper namespace="com.yedam.mapper.BoardMapper">
 
 	<select id="boardList" resultType="board"> <!-- resultType는 return반환 -->
-		select * from tbl_boards 
+		select * from tbl_boards
 		order by board_no
+	</select>
+
+	<select id="boardListPaging" parameterType="int">
+		select r.*
+		from (select rownum rn, a.*
+			from (select *
+					from tbl_boards b
+					order by b.board_no) a
+			<![CDATA[
+			where rownum <= (#{page} * 5))r
+			]]>
+		where r.rn > (#{page} - 1) * 5
+	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		select count(1) from tbl_boards
 	</select>
 
 	<insert id="insertBoard" parameterType="board">
 		insert into tbl_boards
-		(board_no, title, content, writer)
+		(board_no, title, content, writer, img)
 		values (boards_seq.nextval,
-		#{title}, #{content}, #{writer})
+		#{title}, #{content}, #{writer}, #{img})
 	</insert>
 
 	<select id="selectBoard" parameterType="int" resultType="board">
@@ -41,5 +57,19 @@
 		delete from tbl_boards
 		where board_no = #{boardNo}
 	</delete>
+
+	<!-- 조회기능 -->
+	<select id="selectMember" resultType="member">
+		select *
+		from tbl_members
+		where user_id = #{id}
+		and user_pw = #{pw}
+	</select>
+
+	<select id="selectMember2" resultType="member">
+		select *
+		from tbl_members
+		where user_id = #{id}
+	</select>
 
 </mapper>

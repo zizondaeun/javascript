@@ -16,12 +16,14 @@ public class BoardInfoControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); //조회기능
 		svc.addViewCnt(Integer.parseInt(bno)); //조회카운트 증가
 		
 		req.setAttribute("result", vo);
+		req.setAttribute("page", page); //사용안하더라도 계속 전달
 		
 		String path = "WEB-INF/board/board.jsp"; //보드 밑에 addBoard.jsp만듦
 		req.getRequestDispatcher(path).forward(req, resp);

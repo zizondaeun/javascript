@@ -20,18 +20,18 @@ public class ModifyControl implements Control {
 		String bno = req.getParameter("bno");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
+		String page = req.getParameter("page");
 		
-		BoardService svc = new BoardServiceImpl();
-		BoardVO vo = new BoardVO();
-		
+		BoardVO vo = new BoardVO();		
 		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setTitle(title);
 		vo.setContent(content);
 
+		BoardService svc = new BoardServiceImpl();
 		if(svc.modifyBoard(vo)) {
-			resp.sendRedirect("main.do");
+			resp.sendRedirect("main.do?page=" + page); //질의문자형(query string)
 		}else {
-			resp.sendRedirect("modBoardForm.do"); 
+			resp.sendRedirect("처리 중 에러"); 
 		}
 	}
 
