@@ -64,7 +64,7 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		System.out.println("uri: " + uri + ", context: " + context);
 		String path = uri.substring(context.length());
 		System.out.println("path: " + path);
-
+	    
 		Control control = map.get(path); //Control control = new AddEmpControl()
 		control.exec(req, resp); // 여기서 exec는 control 상속받은 addempcontrol의 재정의된 exec임
 		// 서비스의 req,resp를 가지고 exec를 실행해

@@ -20,7 +20,11 @@
 	<tr>
 		<th>작성자</th><td>${bno.writer }</td>
 	</tr>
-		<tr align="center">
+	<tr>
+		<th>파일</th>
+		<td><input type="file" name="myImg"></td>
+	</tr>
+	<tr align="center">
 		<td colspan="2">
 		<c:choose>
 			<c:when test="${bno.writer eq logId }">

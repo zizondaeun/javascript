@@ -2,6 +2,8 @@ package com.yedam.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
@@ -63,5 +65,6 @@ public class BoardServiceImpl implements BoardService { //기능구현은 여기
 	public MemberVO checkMember(String id) {
 		return mapper.selectMember2(id); //값이 있으면 null반환..
 	}
+
 
 }

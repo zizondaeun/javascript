@@ -18,7 +18,7 @@
 		<table class="table">
 			<tr>
 				<th>게시글번호</th>
-				<td>${result.boardNo }</td>
+				<td colspan="3">${result.boardNo }</td>
 				<th>작성자<th>
 				<td>${result.writer }</td>
 			</tr>
@@ -35,7 +35,11 @@
 				<td>${result.createDate }</td>
 				<th>조회수<th>
 				<td>${result.viewCnt }</td>		
-			</tr>	
+			</tr>
+			<tr>
+				<th colspan="2">첨부파일</th>
+				<td><img src="./images/${result.img }" width="200" heght="200"></td>
+			</tr>
 			<tr align="center">
 				<td colspan="4">
 					<button class="btn btn-primary" id="modBtn">수정</button>

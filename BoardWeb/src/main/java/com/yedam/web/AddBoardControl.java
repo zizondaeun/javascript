@@ -20,7 +20,7 @@ public class AddBoardControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { //서비스 기능
 		//title,content,writer 이 세가지 파라미터를 db에 넣기위함(insert)
 		//multipart 요청처리를 위한 처리 (1.request정보 2.저장경로 3.max사이즈 4.인코딩 5.리네임정책)
-		String savePath = req.getServletContext().getRealPath("images"); //젤 상위를 가져옴..
+		String savePath = req.getServletContext().getRealPath("images"); //이미지 파일경로 /젤 상위를 가져옴..
 		int maxSize = 5 * 1024 *1024; //최대 5메가
 		
 		MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy()); 
