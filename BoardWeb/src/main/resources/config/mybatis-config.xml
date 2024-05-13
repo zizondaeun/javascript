@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- 환경설정 파일들/db접속기능..? -->
+<?xml version="1.0" encoding="UTF-8"?><!-- 환경설정 파일들/db를 연결하기위한 jdbc Tool -->
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -20,7 +20,7 @@
 					<property name="driver"
 						value="oracle.jdbc.driver.OracleDriver" />
 					<property name="url"
-						value="jdbc:oracle:thin:@localhost:1521:xe" /> <!-- localhost / GRAM -->
+						value="jdbc:oracle:thin:@localhost:1521:xe" />
 					<property name="username" value="jsp" />
 					<property name="password" value="jsp" />
 				</dataSource>
