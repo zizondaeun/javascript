@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<style>
+<style>
 	div.reply div{
 		margin: auto;
 	}
@@ -52,16 +52,21 @@
 				<th>조회수<th>
 				<td>${result.viewCnt }</td>		
 			</tr>
-			<!-- 
-			 <tr>
+			<tr>
 				<th colspan="2">첨부파일</th><!-- 왜 .이야? -->
-			<!-- <td><img src="./images/${result.img }" width="200" height="200"></td> 
-			</tr>-->	
-			 
+				<c:choose>
+					<c:when test="${not empty result.img }">
+						<td><img src="./images/${result.img }" width="200" height="200"></td> 
+					</c:when>
+					<c:otherwise>
+						<!-- 이미지가 없을때 실행 -->
+					</c:otherwise>
+				</c:choose>
+			</tr>	
 			<tr align="center">
 				<td colspan="4">
 					<button class="btn btn-primary" id="modBtn">수정</button>
-					<button class="btn btn-danger" id="delBtn">삭제</button><!-- 교수님은 id=delbtn안함 -->
+					<button class="btn btn-danger" id="delBtn">삭제</button><!-- 교수님은 id=delbtn안했어 -->
 				</td>
 			</tr>
 		</table>
@@ -70,9 +75,9 @@
 
 <!-- 댓글목록 -->
 <div class="container reply">
-	<!-- 댓글등록 -->
+<!-- 댓글등록 -->
 	<div class="header">
-		<input class="col-sm-8" id="reply" >
+		<input class="col-sm-8" id="reply">
 		<button class="col-sm-3" id="addReply">댓글등록</button>
 	</div>
 	<div class="content">
@@ -86,9 +91,9 @@
 				<hr />
 			</li>
 			<li style="display: none;">
-				<span class="col-sm-2">2</span>
-				<span class="col-sm-5">2댓글내용</span>
-				<span class="col-sm-2">user02</span>
+				<span class="col-sm-2"></span>
+				<span class="col-sm-5"></span>
+				<span class="col-sm-2"></span>
 				<span class="col-sm-2"><button onclick="deleteRow(event)" class="btn btn-warning">삭제</button></span>
 			</li>				
 		</ul>
@@ -98,6 +103,7 @@
 <script>
 	const bno = '${result.boardNo }';
 	const writer = '${logId }';
+	console.log(writer);
 </script>
 
 <script src="js/board.js"></script>
