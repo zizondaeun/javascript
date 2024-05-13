@@ -72,7 +72,7 @@
 <div class="container reply">
 	<!-- 댓글등록 -->
 	<div class="header">
-		<input class="col-sm-8" >
+		<input class="col-sm-8" id="reply" >
 		<button class="col-sm-3" id="addReply">댓글등록</button>
 	</div>
 	<div class="content">
