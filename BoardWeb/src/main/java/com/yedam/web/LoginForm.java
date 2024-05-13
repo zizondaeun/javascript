@@ -13,6 +13,7 @@ public class LoginForm implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = "WEB-INF/member/loginForm.jsp"; 
+		path = "member/loginForm.tiles"; //멤버의 하위 loginForm.tiles를 열어줘
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 

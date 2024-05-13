@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchVO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 import com.yedam.vo.MemberVO;
@@ -21,13 +22,13 @@ public class BoardServiceImpl implements BoardService { //기능구현은 여기
 	//이를 편리하게 수행할 수 있도록 매퍼 인터페이스의 구현체를 가져옴
 	
 	@Override
-	public List<BoardVO> boardList(int page) { //처음 전체목록을 페이징으로 바꿈
-		return mapper.boardListPaging(page);
+	public List<BoardVO> boardList(SearchVO search) { //처음 전체목록을 페이징으로 바꿈
+		return mapper.boardListPaging(search);
 	} 
 	
 	@Override
-		public int getTotal() {
-			return mapper.getTotalCnt();
+		public int getTotal(SearchVO search) {
+			return mapper.getTotalCnt(search);
 	}
 	
 	@Override

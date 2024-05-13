@@ -17,6 +17,8 @@ public class BoardInfoControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); //조회기능
@@ -24,8 +26,11 @@ public class BoardInfoControl implements Control {
 		
 		req.setAttribute("result", vo);
 		req.setAttribute("page", page); //사용안하더라도 계속 전달
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 		
 		String path = "WEB-INF/board/board.jsp"; //보드 밑에 addBoard.jsp만듦
+		path = "board/board.tiles";
 		req.getRequestDispatcher(path).forward(req, resp);
 
 	}

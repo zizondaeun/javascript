@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.web.AddBoardControl;
 import com.yedam.web.AddFormControl;
+import com.yedam.web.AddReplyControl;
 import com.yedam.web.BoardInfoControl;
 import com.yedam.web.LoginControl;
 import com.yedam.web.LoginForm;
@@ -21,6 +22,8 @@ import com.yedam.web.ModifyControl;
 import com.yedam.web.ModifyFormControl;
 import com.yedam.web.RemoveControl;
 import com.yedam.web.RemoveFormControl;
+import com.yedam.web.RemoveReplyControl;
+import com.yedam.web.ReplyListControl;
 
 //http://localhost:8080/BoardWeb/main.do
 public class FrontController extends HttpServlet { //main.do누르면 frontcontroller실행되도록
@@ -37,10 +40,10 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 	public void init(ServletConfig config) throws ServletException {
 		// url 패턴과 실행할 control 인터페이스의 구현클래스를 정의
 		map.put("/main.do", new MainControl()); //메인컨트롤 이동누르면 505오류떴었는데 메인컨트롤 클래스 만들어주고 경로 지정해주니까 게시글목록으로 이동가능해짐
-		
+		//map.put("/boardList.do", new BoardListControl());
 		map.put("/addForm.do", new AddFormControl()); //글등록화면
 		map.put("/addBoard.do", new AddBoardControl()); //등록기능
-		map.put("/boardInfo.do", new BoardInfoControl()); //조회화면
+		map.put("/boardInfo.do", new BoardInfoControl()); //조회화면/상세화면
 		//수정관련
 		map.put("/modBoardForm.do", new ModifyFormControl()); //수정화면 
 		map.put("/updateBoard.do", new ModifyControl()); //업데이트랑 목록 /진짜 수정
@@ -52,6 +55,11 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		map.put("/login.do", new LoginControl());
 		//로그아웃
 		map.put("/logout.do", new LogoutControl());
+		
+		//댓글관련
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
 	}
 
 	// service

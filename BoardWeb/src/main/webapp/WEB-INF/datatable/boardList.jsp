@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:include page="../includes/header.jsp"></jsp:include><!-- index.jsp에서 또 header.jsp를 여기에  -->
+<!-- index.jsp에서 또 header.jsp를 여기에  -->
 <style>
 .pagination {
   display: inline-block;
@@ -56,4 +56,3 @@
 
 <my:paging pageInfo="${paging }"/>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>

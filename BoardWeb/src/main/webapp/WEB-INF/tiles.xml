@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions><!-- 터알즈 정의 부분에 따라 저 만든 파일들이 classic의 td안에 다 들어가게 됨 -->
+  <definition name="myapp.homepage" template="/layouts/classic.jsp">
+    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="header" value="/tiles/banner.jsp" />
+    <put-attribute name="menu" value="/tiles/common_menu.jsp" />
+    <put-attribute name="body" value="/tiles/home_body.jsp" />
+    <put-attribute name="footer" value="/tiles/credits.jsp" />
+  </definition>
+  
+  <definition name="myweb.board" template="/WEB-INF/layout/template.jsp">
+  	<put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"></put-attribute>
+  	<put-attribute name="header" value="/WEB-INF/layout/header.jsp"></put-attribute>
+  	<put-attribute name="body" value="/WEB-INF/layout/body.jsp"></put-attribute>
+  	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+  </definition>
+  
+  <definition name="WILDCARD:board/*" extends="myweb.board"><!-- myweb.board의 바디 영역만! -->
+  	<put-attribute name="body" value="/WEB-INF/board/{1}.jsp"></put-attribute><!-- 컨텐트 바디의 내용만! 페이지에서 바뀌면 되니까 body를 이용해서 -->  	
+  	<!-- addBoard를 열어줘 -->
+  </definition>
+  <definition name="WILDCARD:member/*" extends="myweb.board">
+  	<put-attribute name="body" value="/WEB-INF/member/{1}.jsp"></put-attribute>
+  </definition>
+  
+</tiles-definitions>

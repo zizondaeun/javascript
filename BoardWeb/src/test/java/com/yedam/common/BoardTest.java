@@ -1,10 +1,9 @@
 package com.yedam.common;
 
-import java.util.List;
+import org.apache.ibatis.session.SqlSession;
 
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
+import com.yedam.mapper.BoardMapper;
+import com.yedam.mapper.ReplyMapper;
 
 public class BoardTest {
 	public static void main(String[] args) {
@@ -36,9 +35,21 @@ public class BoardTest {
 		//	System.out.println("조회결과 없음");
 		
 		//페이징
-		BoardService svc = new BoardServiceImpl();
-		svc.boardList(1).forEach(board -> System.out.println(board));
+		//BoardService svc = new BoardServiceImpl();
+		//svc.boardList(1).forEach(board -> System.out.println(board));
 		
+		//검색 테스트
+		SqlSession session = DataSource.getInstance().openSession(true); 
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		
+		mapper.replyList(540).forEach(reply -> System.out.println(reply));
+		
+		//SearchVO search = new SearchVO();
+		//search.setSearchCondition("TW");
+		//search.setKeyword("김다은");
+		//search.setPage(1);
+		
+		//mapper.boardListPaging(search).forEach(board -> System.out.println(board));
 		}	
 		
 		
