@@ -71,6 +71,7 @@ function deleteRow(e) {
 		err => console.log(err)); //세번째 param
 }//end of deleteRow(e)
 
+
 //댓글등록이벤트(addEventListener는 중첩, onclick은 한번만)
 document.getElementById('addReply').addEventListener('click', function(e) {
 	//console.log(document.querySelector('#addReply'));
@@ -82,20 +83,20 @@ document.getElementById('addReply').addEventListener('click', function(e) {
 		alert("댓글을 입력하세요");
 		return;
 	}
-
 	svc.addReply({ bno: bno, writer: writer, reply: reply }, //첫번째 param
 		result => {
 			if (result.retCode == 'OK') {
 				//location.reload(); /새로고침..?/reload 대신하기위해 makeRow를 생성
-				const row = makeRow(result.retVal);
-				document.querySelector('div.reply ul').appendChild(row);
+				//const row = makeRow(result.retVal);
+				//document.querySelector('div.reply ul').appendChild(row);
+				showList();
 				//댓글등록 후에 reply내용 초기화하기
-				document.getElementById('reply').value = "";
+				document.getElementById('reply').value = "";		
 			}
 		}, //두번째 param
 		err => console.log(err)); //세번째 param
-
 }); //end of 등록버튼
+
 //row 생성
 function makeRow(reply = {}) {
 	let tmpl = document.querySelector('div.reply li:nth-of-type(3)').cloneNode(true);
