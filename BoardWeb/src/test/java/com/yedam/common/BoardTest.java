@@ -42,7 +42,11 @@ public class BoardTest {
 		SqlSession session = DataSource.getInstance().openSession(true); 
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 		
-		mapper.replyList(540).forEach(reply -> System.out.println(reply));
+		SearchVO search = new SearchVO();
+		search.setBoardNo(540);
+		search.setRpage(3);
+		
+		mapper.replyListPaging(search).forEach(reply -> System.out.println(reply));
 		
 		//SearchVO search = new SearchVO();
 		//search.setSearchCondition("TW");

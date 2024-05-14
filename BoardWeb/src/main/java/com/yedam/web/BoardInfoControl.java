@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.common.HttpUtils;
 import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
@@ -31,8 +32,8 @@ public class BoardInfoControl implements Control {
 		
 		String path = "WEB-INF/board/board.jsp"; //보드 밑에 addBoard.jsp만듦
 		path = "board/board.tiles";
-		req.getRequestDispatcher(path).forward(req, resp);
-
+		//req.getRequestDispatcher(path).forward(req, resp);
+		HttpUtils.forward(req, resp, path);
 	}
 
 }

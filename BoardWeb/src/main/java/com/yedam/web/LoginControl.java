@@ -26,7 +26,12 @@ public class LoginControl implements Control {
 		if(mvo != null) {
 			HttpSession session = req.getSession(); //웹 브라우저의 세션을 담으려고..?
 			session.setAttribute("logId", mvo.getUserId()); //세션 값이 성공하면 
-			resp.sendRedirect("main.do");
+			//관리자인지 일반회원인지 구분
+			if(mvo.getUserResp().equals("Admin")) 
+				resp.sendRedirect("memberList.do");
+			else 
+				resp.sendRedirect("main.do");				
+			
 		}else {
 			resp.sendRedirect("logForm.do");
 			//System.out.println("처리실패"); 

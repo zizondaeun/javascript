@@ -3,7 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ attribute name="pageInfo" type="com.yedam.common.PageDTO" required="true" %>
-
+<style>
+.center{
+  text-align: center;
+}
+</style>
 <div class="center">
 	<div class="pagination">
 	

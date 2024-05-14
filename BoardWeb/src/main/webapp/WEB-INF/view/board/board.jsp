@@ -3,21 +3,49 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-	div.reply div{
-		margin: auto;
-	}
-	div.reply ul{
-		list-style-type: none;
-		margin-top: 5px;
-	}
-	div.reply li{
-		padding-top: 1px;
-		padding-bottom: 1px;
-	}
-	div.reply span{
-		display: inline-block;
-	}
+div.reply div {
+	margin: auto;
+}
+
+div.reply ul {
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+div.reply li {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+div.reply span {
+	display: inline-block;
+}
+
+.center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 </style>
+
 <h3>상세화면</h3>
 
 <c:choose>
@@ -86,6 +114,7 @@
 				<span class="col-sm-2">글번호</span>
 				<span class="col-sm-5">댓글내용</span>
 				<span class="col-sm-2">작성자</span>
+				<span class="col-sm-2">삭제</span>
 			</li>
 			<li>
 				<hr />
@@ -97,14 +126,24 @@
 				<span class="col-sm-2"><button onclick="deleteRow(event)" class="btn btn-warning">삭제</button></span>
 			</li>				
 		</ul>
-	</div><!-- div.content -->
+	</div><!-- div.content --><!-- 여기에 if써서 글이 없으면 페이징 안보이게 해보기 -->
+	<div class="footer">
+		<div class="center">
+			<div class="pagination">
+				<a href="#">1</a>
+				<a href="#" class="active">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+			</div>
+		</div>	
+	</div>
 </div><!-- div.container.reply -->
+
 
 <script>
 	const bno = '${result.boardNo }';
 	const writer = '${logId }';
-	console.log(writer);
 </script>
 
+<script src="js/replyService.js"></script>
 <script src="js/board.js"></script>
-
