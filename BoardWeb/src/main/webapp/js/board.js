@@ -89,7 +89,7 @@ document.getElementById('addReply').addEventListener('click', function(e) {
 				//location.reload(); /새로고침..?/reload 대신하기위해 makeRow를 생성
 				//const row = makeRow(result.retVal);
 				//document.querySelector('div.reply ul').appendChild(row);
-				showList();
+				showList(); //댓글등록 클릭 바로 후에도 5개씩만 보이도록 하기
 				//댓글등록 후에 reply내용 초기화하기
 				document.getElementById('reply').value = "";		
 			}
