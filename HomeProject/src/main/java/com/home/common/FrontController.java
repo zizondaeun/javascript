@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.home.member.control.JoinControl;
+import com.home.member.control.JoinFormControl;
 import com.home.product.control.MainControl;
+import com.home.product.control.ProductInfoControl;
 
 public class FrontController extends HttpServlet {
 	//필드
@@ -25,9 +28,12 @@ public class FrontController extends HttpServlet {
 	//init-서블릿 초기화 메소드(딱 한번만 호출)
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("ddd");
 		//.do 라는 url 요청이 들어오면, control 클래스의 인스턴스가 실행됨
 		map.put("/main.do", new MainControl()); //상품목록
+		map.put("/productInfo.do", new ProductInfoControl()); //상품상세화면
+		map.put("/joinForm.do", new JoinFormControl()); //이동
+		map.put("/join.do", new JoinControl()); //작성
+		
 	}
 	
 	//service
@@ -35,7 +41,6 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8"); 
 
-		System.out.println("dddd");
 		String uri = req.getRequestURI();
 		String context = req.getContextPath();
 		System.out.println("uri: " + uri + ", context: " + context);

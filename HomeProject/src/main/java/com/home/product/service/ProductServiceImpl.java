@@ -14,8 +14,15 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 	
 	@Override
-	public List<ProductVO> producList() {
+	public List<ProductVO> productList() {
 		return mapper.productList();
+	}
+
+	@Override
+	public ProductVO getProduct(int prodNo) {
+		return mapper.selectProduct(prodNo);
 	} 
+	
+	
 
 }

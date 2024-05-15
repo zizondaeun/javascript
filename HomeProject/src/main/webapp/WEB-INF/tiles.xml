@@ -11,9 +11,8 @@
   	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
   </definition>
   
-  <definition name="WILDCARD:/*" extends="myweb"><!-- myweb.product의 바디 영역만! -->
-  	<put-attribute name="body" value="/WEB-INF/view/*/{1}.jsp"></put-attribute><!-- 컨텐츠 바디의 내용만! 페이지에서 바뀌면 되니까 body를 이용해서 -->  	
-  	<!-- addBoard를 열어줘 -->
+  <definition name="WILDCARD:*/*" extends="myweb"><!-- myweb.product의 바디 영역만! -->
+  	<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"></put-attribute><!-- 컨텐츠 바디의 내용만! 페이지에서 바뀌면 되니까 body를 이용해서 -->  	
   </definition>
   
   

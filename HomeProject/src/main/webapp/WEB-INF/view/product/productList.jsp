@@ -26,26 +26,23 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일시</th>
-			<th>조회수</th>
+			<th>상품번호</th>
+			<th>이미지</th>
+			<th>상품이름</th>
+			<th>상품가격</th>
 		</tr>
 	</thead>
 	<tbody>
-		<!-- url 에 /main.do로 들어가야함 아니면 404뜸!!! -->
-		<c:forEach var="board" items="${boardList}">
+		<c:forEach var="product" items="${productList}">
 		<tr>
-			<td>${board.boardNo }</td><!-- 글수정하면 원래페이지로 가는방법(1페이지말고) -->
-			<td><a href="boardInfo.do?bno=${board.boardNo }&page=${paging.page}&keyword=${keyword }&searchCondition=${searchCondition}">${board.title }</a></td>
-			<td>${board.writer }</td>
-			<td><fmt:formatDate value="${board.createDate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-			<td>${board.viewCnt }</td>
+			<td>${product.prodNo }</td>
+			<td>${product.prodImg }</td>
+			<td><a href="productInfo.do?pno=${product.prodNo }">${product.prodName }</a></td>
+			<td>${product.prodPrice }원</td>
 		</tr>
 		</c:forEach>
 	</tbody>
 </table>
 
 <hr />
-
+<script>console.log(1234);</script>

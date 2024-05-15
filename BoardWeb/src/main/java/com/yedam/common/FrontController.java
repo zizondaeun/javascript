@@ -41,6 +41,7 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 	// init
 	@Override
 	public void init(ServletConfig config) throws ServletException {
+		System.out.println("aaaa");
 		// url 패턴과 실행할 control 인터페이스의 구현클래스를 정의
 		map.put("/main.do", new MainControl()); //메인컨트롤 이동누르면 505오류떴었는데 메인컨트롤 클래스 만들어주고 경로 지정해주니까 게시글목록으로 이동가능해짐
 		//map.put("/boardList.do", new BoardListControl());
@@ -76,6 +77,7 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 	// service
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("bbbb");
 		//req.setCharacterEncoding("utf-8"); // 요청정보의 한글처리 /filter해둬서 이제 따로 없어도 된대
 
 		String uri = req.getRequestURI();
