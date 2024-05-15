@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Index.jsp</title>
 </head>
 <body>
 	<h1>안녕</h1>
+	<a href="main.do">사이트로 이동</a>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-<tiles-definitions><!-- 터알즈 정의 부분에 따라 저 만든 파일들이 classic의 td안에 다 들어가게 됨 -->
+<tiles-definitions><!-- 타일즈 정의 부분에 따라 저 만든 파일들이 classic의 td안에 다 들어가게 됨 -->
 
   <definition name="myweb.board" template="/WEB-INF/layout/template.jsp">
   	<put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"></put-attribute>

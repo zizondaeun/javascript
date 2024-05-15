@@ -9,8 +9,9 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="board" type="com.yedam.vo.BoardVO" />
-		<typeAlias alias="member" type="com.yedam.vo.MemberVO" />
+		<typeAlias alias="member" type="com.home.member.vo.MemberVO" />
+		<typeAlias alias="orders" type="com.home.orders.vo.OrderVO" />
+		<typeAlias alias="product" type="com.home.product.vo.ProductVO" />
 	</typeAliases>
 	
 		<environments default="development">
@@ -21,13 +22,15 @@
 						value="oracle.jdbc.driver.OracleDriver" />
 					<property name="url"
 						value="jdbc:oracle:thin:@localhost:1521:xe" />
-					<property name="username" value="jsp" />
-					<property name="password" value="jsp" />
+					<property name="username" value="kde" />
+					<property name="password" value="1234" />
 				</dataSource>
 			</environment>
 		</environments>
+		
 		<mappers>
-			<mapper resource="com/yedam/mapper/BoardMapper.xml" />
-			<mapper resource="com/yedam/mapper/ReplyMapper.xml" />
+			<mapper resource="com/home/member/mapper/MemberMapper.xml" />
+			<mapper resource="com/home/orders/mapper/OrderMapper.xml" />
+			<mapper resource="com/home/product/mapper/ProductMapper.xml" />
 		</mappers>
 </configuration>

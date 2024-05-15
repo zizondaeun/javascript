@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions><!-- 타일즈 정의 부분에 따라 저 만든 파일들이 classic의 td안에 다 들어가게 됨 -->
+
+  <definition name="myweb" template="/WEB-INF/layout/template.jsp">
+  	<put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"></put-attribute>
+  	<put-attribute name="header" value="/WEB-INF/layout/header.jsp"></put-attribute>
+  	<put-attribute name="body" value="/WEB-INF/layout/body.jsp"></put-attribute>
+  	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+  </definition>
+  
+  <definition name="WILDCARD:/*" extends="myweb"><!-- myweb.product의 바디 영역만! -->
+  	<put-attribute name="body" value="/WEB-INF/view/*/{1}.jsp"></put-attribute><!-- 컨텐츠 바디의 내용만! 페이지에서 바뀌면 되니까 body를 이용해서 -->  	
+  	<!-- addBoard를 열어줘 -->
+  </definition>
+  
+  
+  
+</tiles-definitions>
