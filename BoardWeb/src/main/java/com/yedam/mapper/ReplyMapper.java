@@ -15,4 +15,6 @@ public interface ReplyMapper {
 	int insertReply(ReplyVO rvo);
 	//댓글개수
 	int selectCount(int replyNo);
+	//댓글 수정
+	int updateReply(ReplyVO rvo);
 }

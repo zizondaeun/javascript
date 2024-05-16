@@ -14,4 +14,6 @@ public interface ReplyService {
 	boolean addReply(ReplyVO rvo);
 	//댓글건수
 	int getReplyCnt(int boardNo);
+	//댓글수정
+	boolean modReply(ReplyVO rvo);
 }

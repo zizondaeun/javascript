@@ -45,7 +45,8 @@ div.reply span {
 	background-color: #ddd;
 }
 </style>
-
+<link href="css/paging.css" rel="stylesheet">
+<link href="css/modal.css" rel="stylesheet">
 <h3>상세화면</h3>
 
 <c:choose>
@@ -139,11 +140,27 @@ div.reply span {
 	</div>
 </div><!-- div.container.reply -->
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>댓글번호: 234</p>
+    <p><input type="text" name="modal_reply"></p>
+    <p><button class="btn btn-primary">수정</button></p>
+  </div>
+
+</div>
 
 <script>
 	const bno = '${result.boardNo }';
 	const writer = '${logId }';
+	//const rno = '${replyNo}';
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="js/replyService.js"></script>
-<script src="js/board.js"></script>
+<!-- <script src="js/board.js"></script>  -->
+<script src="js/jboard.js"></script>
+<!-- <script src="js/jmodal.js"></script> -->
