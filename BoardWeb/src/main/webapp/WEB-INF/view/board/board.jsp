@@ -161,6 +161,5 @@ div.reply span {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="js/replyService.js"></script>
-<!-- <script src="js/board.js"></script>  -->
 <script src="js/jboard.js"></script>
-<!-- <script src="js/jmodal.js"></script> -->
+

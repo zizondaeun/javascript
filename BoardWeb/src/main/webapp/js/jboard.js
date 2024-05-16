@@ -16,31 +16,31 @@ $('.btn-danger').on('click', function() {
 
 let page = 1;
 showList();
-function showList(){
+function showList() {
 	//새로운 목록을 출력할 경우에 기존 목록 지우기
 	$('div.content ul li:gt(2)').remove();
-	
-	svc.replyList({ bno: bno, page: page },
-	result => {
-		result.forEach(reply => {
-			const row = makeRow(reply);
-			row.appendTo('div.reply ul');
-		})
-		makePageInfo(); //페이징을 여기서 호출해야지
-	},
-	err => {console.log(err)})
-}
 
-function makeRow(reply = {}){
+	svc.replyList({ bno: bno, page: page },
+		result => {
+			result.forEach(reply => {
+				const row = makeRow(reply);
+				row.appendTo('div.reply ul');
+			})
+			makePageInfo(); //페이징을 여기서 호출해야지
+		},
+		err => { console.log(err) })
+}
+let replyNo;
+function makeRow(reply = {}) {
 	let tmpl = $('div.reply li:nth-of-type(3)').clone();
 	tmpl.css('display', 'block');
-	tmpl.on('dblclick', function(e){
+	tmpl.on('dblclick', function(e) {
 		//선택값을 모달창에 전달
-		$('#myModal').css('display','block');
-		let replyNo =$(e.target).parent().children().eq(0).text(); //글번호
+		$('#myModal').css('display', 'block');
+		replyNo = $(e.target).parent().children().eq(0).text(); //글번호
 		let reply = $(e.target).parent().children().eq(1).text(); //댓글내용
 		let replyer = $(e.target).parent().children().eq(2).text(); //작성자
-		console.log(replyNo,reply,replyer);
+		//console.log(replyNo,reply,replyer);
 		$('.modal-content p:eq(0)').text('댓글번호: ' + replyNo);
 		$('.modal-content input:eq(0)').val(reply);
 	})
@@ -51,7 +51,7 @@ function makeRow(reply = {}){
 	return tmpl;
 } //end of makeRow
 
-function deleteRow(e){
+function deleteRow(e) {
 	const rno = $(e.target).parent().parent().data('rno'); //data-rno
 	//댓글 작성자만 삭제할수있도록
 	if (!writer) {
@@ -59,7 +59,7 @@ function deleteRow(e){
 		return;
 	} //이거 안된다...저 아이디를 어떻게 하면 될거같은데...
 	//제이쿼리에서 if 안에 어케 해야하는지
-	
+
 	//fetch 삭제 기능 구현
 	svc.removeReply(rno, //첫번째 param
 		result => {
@@ -78,17 +78,17 @@ function deleteRow(e){
 } //end of deleteRow
 
 //등록버튼
-$('#addReply').on('click', function(){
+$('#addReply').on('click', function() {
 	let reply = $('#reply').val();
-	if (writer == '') { 
+	if (writer == '') {
 		alert("로그인 후에 입력하세요");
 		return;
-		
-	} else if (reply == '') { 
+
+	} else if (reply == '') {
 		alert("댓글을 입력하세요");
 		return;
 	}
-	
+
 	svc.addReply({ bno, writer, reply }, //param1
 		result => {
 			if (result.retCode == 'OK') {
@@ -104,7 +104,7 @@ $('#addReply').on('click', function(){
 //댓글 페이징 생성
 let pagination = $('div.pagination');
 
-function makePageInfo(){
+function makePageInfo() {
 	svc.getTotalCount(bno //param1
 		, createPageList //param2
 		, err => console.log(err))
@@ -162,12 +162,19 @@ function createPageList(result) {
 } //end of createPageList
 
 //댓글 수정 기능 추가(modal)
-$('.modal-content button').on('click', function(){
+$('.modal-content button').on('click', function(e) {
 	alert('수정완료');
 	$('#myBtn').css('display', 'none');
 	showList();
 	//console.log(showList());
-	
+	let replyA = $(e.target).parent().parent().children('p:eq(1)').children('input:eq(0)').val();
+	fetch('modReply.do', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: 'rno=' + replyNo + '&reply=' + replyA
+	})
+		.then(resolve => console.log(resolve)) //replyservice에서 기능을 여기서 호출했는데 안되어서 그 기능을 여기에 넣음...
+		
 })
 
 

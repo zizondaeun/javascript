@@ -41,7 +41,7 @@
 		where board_no = #{boardNo}
 	</select>
 	
-	<update id="updateReply" parameterType="int">
+	<update id="updateReply" parameterType="com.yedam.vo.ReplyVO">
 		update tbl_replyes
 		set reply = #{reply}
 		where reply_no = #{replyNo}

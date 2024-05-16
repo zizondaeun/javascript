@@ -34,5 +34,18 @@ const svc = {
 			.then(resolve => resolve.json()) //{totalCount: 10}}
 			.then(successCall)
 			.catch(errorCall);
+	},
+	//댓글 수정
+	modReply(param = {}, successCall, errorCall){
+		console.log(2222);
+		fetch('modReply.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'rno=' + param.rno + '&reply=' + param.reply
+		})
+			.then(resolve => resolve.json())
+			.then(successCall)
+			.catch(errorCall);
 	}
+	
 } // end of svc.
