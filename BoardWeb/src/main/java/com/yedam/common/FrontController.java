@@ -80,7 +80,7 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		//장바구니 관련
 		map.put("/cartList.do", new CartList()); //목록
 		map.put("/editCart.do", new EditCart()); //수량변경
-		map.put("/delCart", new DelCart()); //삭제
+		map.put("/delCart.do", new DelCart()); //삭제
 		
 	}
 

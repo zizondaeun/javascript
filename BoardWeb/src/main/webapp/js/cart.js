@@ -43,13 +43,6 @@ let basket = {
 					//개별합계
 					rowDiv.querySelector('div.sum').textContent = (cart.qty * cart.price).numberFormat() + "원";
 					rowDiv.querySelector('div.sum').setAttribute('id', 'p_sum' + cart.no);
-					//삭제
-					let del = rowDiv.querySelector('.abutton').onclick();
-						console.log(del);
-
-					//console.log(del);
-					//let rowData = rowDiv.querySelector('div[data-id="1"]');
-					
 					
 					
 					document.querySelector('#basket').append(rowDiv);
@@ -65,7 +58,28 @@ let basket = {
 	},
 
 	delItem: function() {
-		 console.log(event.target); //a태그
+		 //console.log(event.target); //a태그
+		let no = event.target.parentElement.parentElement.parentElement.dataset.id;
+		console.log(no);
+		
+		svc.cartRemove(no,
+			result => {
+				if (result.retCode == 'OK') {
+					//console.log(result)
+					let price = document.querySelector('#p_price' + no).value; //단가
+					let qty = document.querySelector('#p_num' + no).value; //현재수량
+					//합계반영
+					basket.cartCount -= qty;
+					basket.cartTotal -= (price * qty);
+					basket.reCalc();
+					//화면에서 지우기
+					document.querySelector('div[data-id="' + no + '"]').remove();
+				}
+			},
+			err => {
+				console.log(err);
+			});
+		 
 	},
 
 	reCalc: function() {
@@ -110,7 +124,31 @@ let basket = {
 	},
 
 	delCheckedItem: function() {
-		 
+		document.querySelectorAll('input:checked').forEach((item, idx) => {
+			if (idx >= 0) { //템플릿은 제외
+				let no = item.parentElement.parentElement.parentElement.dataset.id;
+				console.log(no);
+
+				svc.cartRemove(no,
+					result => {
+						if (result.retCode == 'OK') {
+							//console.log(result)
+							let price = document.querySelector('#p_price' + no).value; //단가
+							let qty = document.querySelector('#p_num' + no).value; //현재수량
+							//합계반영
+							basket.cartCount -= qty;
+							basket.cartTotal -= (price * qty);
+							basket.reCalc();
+							//화면에서 지우기
+							document.querySelector('div[data-id="' + no + '"]').remove();
+						}
+					},
+					err => {
+						console.log(err);
+					});
+
+			}
+		}) //querySelectorAll
 	},
 
 	delAllItem: function() {

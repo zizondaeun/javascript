@@ -18,6 +18,7 @@ $('.btn-danger').on('click', function() {
 $('.modal-content button').on('click', function(e) {
 	const rno = $(e.target).parent().prev().prev().data('rno'); //data-rno
 	let reply = $(e.target).parent().parent().children('p:eq(1)').children('input:eq(0)').val();
+	
 	console.log(rno, reply);
 	svc.modReply(//
 		{

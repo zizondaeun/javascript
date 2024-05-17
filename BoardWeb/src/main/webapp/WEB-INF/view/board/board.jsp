@@ -162,4 +162,6 @@ div.reply span {
 
 <script src="js/replyService.js"></script>
 <script src="js/jboard.js"></script>
+<!-- <script src="js/board.js"></script>  -->
+<!-- <script src="js/jmodal.js"></script> -->
 
