@@ -31,13 +31,13 @@ const svc = {
 	// 댓글 전체건수
 	getTotalCount(bno = 1, successCall, errorCall) {
 		fetch('getTotalCnt.do?bno=' + bno)
-			.then(resolve => resolve.json()) //{totalCount: 10}}
+			.then(resolve => resolve.json())
 			.then(successCall)
 			.catch(errorCall);
 	},
 	//댓글 수정
-	modReply(param = {}, successCall, errorCall){
-		console.log(2222);
+	modReply(param = {}, successCall, errorCall) {
+		//console.log(2222);
 		fetch('modReply.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -47,5 +47,5 @@ const svc = {
 			.then(successCall)
 			.catch(errorCall);
 	}
-	
+
 } // end of svc.

@@ -1,6 +1,6 @@
 /*
-*jboard.ja
-*/
+ *jboard.ja
+ */
 
 //수정버튼
 $('#modBtn').on('click', function() {
@@ -14,13 +14,41 @@ $('.btn-danger').on('click', function() {
 	document.forms.myFrm.submit(); //submit 이벤트 호출
 })
 
+//댓글 수정 기능 추가(modal)
+$('.modal-content button').on('click', function(e) {
+	const rno = $(e.target).parent().prev().prev().data('rno'); //data-rno
+	let reply = $(e.target).parent().parent().children('p:eq(1)').children('input:eq(0)').val();
+	console.log(rno, reply);
+	svc.modReply(//
+		{
+			rno,
+			reply
+		},
+		result => {
+			console.log(result);
+			alert('수정완료');
+			$('#myBtn').css('display', 'none');
+			$('#myModal').css('display', 'none');
+			showList();
+		},
+		err => {
+			console.log(err);
+		}
+	)
+})
+
+
 let page = 1;
 showList();
+
 function showList() {
 	//새로운 목록을 출력할 경우에 기존 목록 지우기
 	$('div.content ul li:gt(2)').remove();
 
-	svc.replyList({ bno: bno, page: page },
+	svc.replyList({
+		bno: bno,
+		page: page
+	},
 		result => {
 			result.forEach(reply => {
 				const row = makeRow(reply);
@@ -28,9 +56,12 @@ function showList() {
 			})
 			makePageInfo(); //페이징을 여기서 호출해야지
 		},
-		err => { console.log(err) })
+		err => {
+			console.log(err)
+		})
 }
 let replyNo;
+
 function makeRow(reply = {}) {
 	let tmpl = $('div.reply li:nth-of-type(3)').clone();
 	tmpl.css('display', 'block');
@@ -41,6 +72,7 @@ function makeRow(reply = {}) {
 		let reply = $(e.target).parent().children().eq(1).text(); //댓글내용
 		let replyer = $(e.target).parent().children().eq(2).text(); //작성자
 		//console.log(replyNo,reply,replyer);
+		$('.modal-content p:eq(0)').attr('data-rno', replyNo);
 		$('.modal-content p:eq(0)').text('댓글번호: ' + replyNo);
 		$('.modal-content input:eq(0)').val(reply);
 	})
@@ -89,7 +121,11 @@ $('#addReply').on('click', function() {
 		return;
 	}
 
-	svc.addReply({ bno, writer, reply }, //param1
+	svc.addReply({
+		bno,
+		writer,
+		reply
+	}, //param1
 		result => {
 			if (result.retCode == 'OK') {
 				page = 1; //최신글 순 일 경우
@@ -160,21 +196,3 @@ function createPageList(result) {
 		pagination.append(aTag);
 	}
 } //end of createPageList
-
-//댓글 수정 기능 추가(modal)
-$('.modal-content button').on('click', function(e) {
-	alert('수정완료');
-	$('#myBtn').css('display', 'none');
-	showList();
-	//console.log(showList());
-	let replyA = $(e.target).parent().parent().children('p:eq(1)').children('input:eq(0)').val();
-	fetch('modReply.do', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'rno=' + replyNo + '&reply=' + replyA
-	})
-		.then(resolve => console.log(resolve)) //replyservice에서 기능을 여기서 호출했는데 안되어서 그 기능을 여기에 넣음...
-		
-})
-
-

@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.mapper.BoardMapper;
 import com.yedam.mapper.ReplyMapper;
+import com.yedam.vo.CartVO;
 
 public class BoardTest {
 	public static void main(String[] args) {
@@ -38,15 +39,23 @@ public class BoardTest {
 		//BoardService svc = new BoardServiceImpl();
 		//svc.boardList(1).forEach(board -> System.out.println(board));
 		
-		//검색 테스트
 		SqlSession session = DataSource.getInstance().openSession(true); 
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		//목록 가져오기
+		CartVO cvo = new CartVO();
+		cvo.setNo(3);
+		cvo.setQty(1);
+		int r = mapper.updateCart(cvo); //updateCart(cvo)-qty건수 변경,//deleteCart(cvo.getNo()
+		System.out.println("건수: " + r);
 		
-		SearchVO search = new SearchVO();
-		search.setBoardNo(540);
-		search.setRpage(3);
+		mapper.selectList().forEach(cart -> System.out.println(cart));
 		
-		mapper.replyListPaging(search).forEach(reply -> System.out.println(reply));
+		//검색 테스트
+		/*
+		 * SearchVO search = new SearchVO(); search.setBoardNo(540); search.setRpage(3);
+		 * 
+		 * mapper.replyListPaging(search).forEach(reply -> System.out.println(reply));
+		 */
 		
 		//SearchVO search = new SearchVO();
 		//search.setSearchCondition("TW");

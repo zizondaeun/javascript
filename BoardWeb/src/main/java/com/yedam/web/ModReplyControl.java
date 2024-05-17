@@ -26,22 +26,22 @@ public class ModReplyControl implements Control {
 		rvo.setReplyNo(Integer.parseInt(rno));
 		rvo.setReply(reply);
 		System.out.println(rvo);
-		
+
 		Map<String, Object> result = new HashMap<>();
-		
+
 		ReplyService svc = new ReplyServiceImpl();
-		
-		if(svc.modReply(rvo)) {
+
+		if (svc.modReply(rvo)) {
 			result.put("retCode", "OK");
-			//result.put("retVal", rvo);
-		}else {
+			// result.put("retVal", rvo);
+		} else {
 			result.put("retCode", "NG");
-			//result.put("retVal", null);
+			// result.put("retVal", null);
 		}
-		//Gson gson = new GsonBuilder().create();
-		//String json = gson.toJson(result);
-		
-		//resp.getWriter().print(json);	
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(result);
+
+		resp.getWriter().print(json);
 
 	}
 

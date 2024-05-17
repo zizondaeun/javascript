@@ -14,6 +14,9 @@ import com.yedam.web.AddBoardControl;
 import com.yedam.web.AddFormControl;
 import com.yedam.web.AddReplyControl;
 import com.yedam.web.BoardInfoControl;
+import com.yedam.web.CartList;
+import com.yedam.web.DelCart;
+import com.yedam.web.EditCart;
 import com.yedam.web.LoginControl;
 import com.yedam.web.LoginForm;
 import com.yedam.web.LogoutControl;
@@ -73,6 +76,11 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		
 		//상품관련
 		map.put("/productList.do", new ProductListControl());
+		
+		//장바구니 관련
+		map.put("/cartList.do", new CartList()); //목록
+		map.put("/editCart.do", new EditCart()); //수량변경
+		map.put("/delCart", new DelCart()); //삭제
 		
 	}
 
