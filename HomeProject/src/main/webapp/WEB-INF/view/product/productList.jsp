@@ -27,18 +27,24 @@
 	<thead>
 		<tr>
 			<th>상품번호</th>
-			<th>이미지</th>
 			<th>상품이름</th>
 			<th>상품가격</th>
+			<th>이미지</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="product" items="${productList}">
 		<tr>
 			<td>${product.prodNo }</td>
-			<td>${product.prodImg }</td>
 			<td><a href="productInfo.do?pno=${product.prodNo }">${product.prodName }</a></td>
 			<td>${product.prodPrice }원</td>
+			<c:choose>
+				<c:when test="${not empty product.prodImg }">
+					<td><img src="./images/${product.prodImg }" width="50" height="50"></td>				
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 		</tr>
 		</c:forEach>
 	</tbody>

@@ -1,34 +1,30 @@
 package com.home.product.control;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.home.common.Control;
-import com.home.common.HttpUtils;
 import com.home.product.service.ProductService;
 import com.home.product.service.ProductServiceImpl;
 import com.home.product.vo.ProductVO;
 
-public class MainControl implements Control {
+public class ModifyFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// main.do => WEB-INF/view/product/productList.jsp
-		String path = "WEB-INF/view/product/productList.jsp";
-		path = "product/productList.tiles"; 
+		req.setCharacterEncoding("utf-8");
+		String no = req.getParameter("pno");
 		
 		ProductService svc = new ProductServiceImpl();
+		ProductVO vo = svc.getProduct(Integer.parseInt(no));
+		req.setAttribute("product", vo);
 		
-		List<ProductVO> list = svc.productList(); //상품목록 부르기만해
-		
-		req.setAttribute("productList", list);
-		
-		HttpUtils.forward(req, resp, path);
-		
+		String path = "WEB-INF/view/product/editForm.jsp";
+		path = "product/editForm.tiles";
+		req.getRequestDispatcher(path).forward(req, resp);
 	}
 
 }

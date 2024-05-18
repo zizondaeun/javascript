@@ -12,7 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.home.member.control.JoinControl;
 import com.home.member.control.JoinFormControl;
+import com.home.member.control.LoginControl;
+import com.home.member.control.LoginFormControl;
+import com.home.member.control.LogoutControl;
+import com.home.product.control.AddFormControl;
+import com.home.product.control.AddProductControl;
+import com.home.product.control.DeleteControl;
 import com.home.product.control.MainControl;
+import com.home.product.control.ModifyControl;
+import com.home.product.control.ModifyFormControl;
 import com.home.product.control.ProductInfoControl;
 
 public class FrontController extends HttpServlet {
@@ -31,8 +39,20 @@ public class FrontController extends HttpServlet {
 		//.do 라는 url 요청이 들어오면, control 클래스의 인스턴스가 실행됨
 		map.put("/main.do", new MainControl()); //상품목록
 		map.put("/productInfo.do", new ProductInfoControl()); //상품상세화면
+		//회원가입
 		map.put("/joinForm.do", new JoinFormControl()); //이동
 		map.put("/join.do", new JoinControl()); //작성
+		//로그인
+		map.put("/logForm.do", new LoginFormControl()); //로그인창으로 이동
+		map.put("/login.do", new LoginControl()); 
+		//로그아웃
+		map.put("/logout.do", new LogoutControl()); 
+		//관리자용
+		map.put("/addForm.do", new AddFormControl()); //상품등록페이지로 이동
+		map.put("/addProduct.do", new AddProductControl()); //상품등록
+		map.put("/modProductForm.do", new ModifyFormControl()); //상품수정페이지로 이동
+		map.put("/updateProduct.do", new ModifyControl()); //상품수정
+		map.put("/deleteProduct.do", new DeleteControl()); //상품삭제
 		
 	}
 	
@@ -40,7 +60,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8"); 
-
+		
 		String uri = req.getRequestURI();
 		String context = req.getContextPath();
 		System.out.println("uri: " + uri + ", context: " + context);

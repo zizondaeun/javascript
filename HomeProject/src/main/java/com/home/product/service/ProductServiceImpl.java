@@ -21,6 +21,21 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductVO getProduct(int prodNo) {
 		return mapper.selectProduct(prodNo);
+	}
+
+	@Override
+	public boolean addForm(ProductVO product) {
+		return mapper.insertProduct(product) == 1;
+	}
+
+	@Override
+	public boolean modifyProduct(ProductVO product) {
+		return mapper.updateProduct(product) == 1;
+	}
+
+	@Override
+	public boolean removeProduct(int prodNo) {
+		return mapper.deleteProduct(prodNo) == 1;
 	} 
 	
 	

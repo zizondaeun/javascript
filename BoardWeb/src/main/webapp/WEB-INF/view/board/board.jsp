@@ -85,7 +85,7 @@ div.reply span {
 				<th colspan="2">첨부파일</th><!-- 왜 .이야? -->
 				<c:choose>
 					<c:when test="${not empty result.img }">
-						<td><img src="./images/${result.img }" width="200" height="200"></td> 
+						<td><img src="./images/${result.img }" width="50" height="50"></td> 
 					</c:when>
 					<c:otherwise>
 						<!-- 이미지가 없을때 실행 -->

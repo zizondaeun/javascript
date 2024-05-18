@@ -32,21 +32,22 @@
 			]]>
 		where r.rn > (#{page} - 1) * 5
 	</select>
-	
-	<select id="getTotalCnt" resultType="int" parameterType="com.yedam.common.SearchVO">
-	select count(1) from tbl_boards
-	where
-	<choose>
-		<when test="searchCondition == 'T'.toString()">
-			title like '%' ||#{keyword}|| '%'
-		</when>
-		<when test="searchCondition == 'W'.toString()">
-			writer like '%' ||#{keyword}|| '%'
-		</when>
-		<otherwise>
-			title like '%' ||#{keyword}|| '%' or writer like '%' ||#{keyword}|| '%'
-		</otherwise>
-	</choose>
+
+	<select id="getTotalCnt" resultType="int"
+		parameterType="com.yedam.common.SearchVO">
+		select count(1) from tbl_boards
+		where
+		<choose>
+			<when test="searchCondition == 'T'.toString()">
+				title like '%' ||#{keyword}|| '%'
+			</when>
+			<when test="searchCondition == 'W'.toString()">
+				writer like '%' ||#{keyword}|| '%'
+			</when>
+			<otherwise>
+				title like '%' ||#{keyword}|| '%' or writer like '%' ||#{keyword}|| '%'
+			</otherwise>
+		</choose>
 	</select>
 
 	<insert id="insertBoard" parameterType="board">
@@ -82,7 +83,7 @@
 		where board_no = #{boardNo}
 	</delete>
 
-	<!-- 조회기능 -->
+	<!-- 회원조회기능 -->
 	<select id="selectMember" resultType="member">
 		select *
 		from tbl_members
@@ -90,6 +91,7 @@
 		and user_pw = #{pw}
 	</select>
 
+	<!-- 회원맞는지체크기능 -->
 	<select id="selectMember2" resultType="member">
 		select *
 		from tbl_members

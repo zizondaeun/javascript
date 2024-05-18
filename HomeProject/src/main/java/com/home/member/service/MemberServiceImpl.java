@@ -16,4 +16,14 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.insertMember(vo) == 1;
 	}
 
+	@Override
+	public MemberVO login(String id, String pw) {
+		return mapper.selectMember(id, pw);
+	}
+
+	@Override
+	public MemberVO checkMember(String id) {
+		return mapper.selectMember2(id);
+	}
+
 }

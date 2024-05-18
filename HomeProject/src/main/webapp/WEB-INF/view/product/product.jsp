@@ -62,10 +62,6 @@ div.reply span {
 				<td>${result.prodNo }</td>
 			</tr>
 			<tr>
-				<th>이미지<th>
-				<td>${result.prodImg }</td>
-			</tr>
-			<tr>
 				<th>상품이름<td>
 				<td>${result.prodName }</td>
 			</tr>
@@ -77,6 +73,10 @@ div.reply span {
 				<th>상품설명<td>
 				<td colspan="3">${result.prodEx }</td>
 			</tr>	
+			<tr>
+				<th>이미지<th>
+				<td>${result.prodImg }</td>
+			</tr>
 			<tr align="center">
 				<td colspan="4">
 					<button class="btn btn-primary" id="modBtn">수정</button>
@@ -89,7 +89,13 @@ div.reply span {
 
 <script>
 	const pno = '${result.prodNo}';
+	console.log(pno);
+	document.querySelector('#modBtn').addEventListener('click',function(){
+		document.forms.myFrm.action = "modProductForm.do?pno=" + pno;
+		document.forms.myFrm.submit();
+	})
+	document.querySelector('#delBtn').addEventListener('click', function(){
+		document.forms.myFrm.action = "deleteProduct.do?pno=" + pno; 
+		document.forms.myFrm.submit(); 
+	})
 </script>
-	
-
-<script>console.log(5555);</script>

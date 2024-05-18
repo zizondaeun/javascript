@@ -5,7 +5,14 @@
                 <div class="sidebar-heading border-bottom bg-light">반찬가게(${empty logId ? 'Guest' : logId })</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="main.do">상품목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">상품등록</a>
+                    <c:choose>
+                    <c:when test="${logId eq 'admin'}">
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">상품등록</a>
+                    </c:when>
+                   	<c:otherwise>
+                   		
+                   	</c:otherwise>
+                    </c:choose>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">상품주문</a>
                     <c:choose>
 						<c:when test="${empty logId }">

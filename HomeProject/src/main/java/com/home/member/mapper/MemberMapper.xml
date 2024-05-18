@@ -8,5 +8,20 @@
 		insert into member(user_id, user_pw, user_name, user_phone)
 		values (#{userId}, #{userPw}, #{userName}, #{userPhone})
 	</insert>
+	
+	<!-- 로그인(회원조회) -->
+	<select id="selectMember" parameterType="member">
+		select *
+		from member
+		where user_id = #{id} 
+		and user_pw = #{pw}
+	</select>
+	
+	<!-- 회원맞는지 체크 -->
+	<select id="selectMember2" parameterType="member">
+		select *
+		from member
+		where user_id = #{id}
+	</select>
 
 </mapper>

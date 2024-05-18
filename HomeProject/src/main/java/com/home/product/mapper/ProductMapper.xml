@@ -15,5 +15,20 @@
 		from product
 		where prod_no = #{prodNo}
 	</select>
+	
+	<insert id="insertProduct" parameterType="product">
+		insert into product(prod_no, prod_name, prod_price, prod_ex, prod_img)
+		values (product_seq.nextval, #{prodName}, #{prodPrice}, #{prodEx}, #{prodImg})
+	</insert>
+	
+	<update id="updateProduct" parameterType="product">
+		update product
+		set prod_name = #{prodName}, prod_price = #{prodPrice}, prod_ex = #{prodEx}, prod_img = #{prodImg}
+		where prod_no = #{prodNo}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		delete from product where prod_no = #{prodNo}
+	</delete>
 
 </mapper>

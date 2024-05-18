@@ -10,5 +10,14 @@ public interface ProductService {
 
 	ProductVO getProduct(int prodNo); //상품상세화면
 	
+	boolean addForm(ProductVO product); //상품등록
+
+	boolean modifyProduct(ProductVO product); //상품수정
+
+	boolean removeProduct(int prodNo); //상품삭제
+
+	
+	
+	
 	
 }

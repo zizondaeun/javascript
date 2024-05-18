@@ -16,7 +16,7 @@
   	<!-- addBoard를 열어줘 -->
   </definition>
   
-   <definition name="myweb.admin" template="/WEB-INF/admin/template.jsp">
+  <definition name="myweb.admin" template="/WEB-INF/admin/template.jsp">
   	<put-attribute name="nav" value="/WEB-INF/admin/nav.jsp"></put-attribute>
   	<put-attribute name="menu" value="/WEB-INF/admin/menu.jsp"></put-attribute>
   	<put-attribute name="content" value="/WEB-INF/admin/content.jsp"></put-attribute>
