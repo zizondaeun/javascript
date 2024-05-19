@@ -35,7 +35,7 @@ public class ModifyControl implements Control {
 		vo.setProdPrice(Integer.parseInt(price));
 		vo.setProdEx(ex);
 		vo.setProdImg(img);
-		System.out.println(vo);
+		//System.out.println(vo);
 		
 		if(vo.getProdImg() == null) {
 			vo.setProdImg("1");

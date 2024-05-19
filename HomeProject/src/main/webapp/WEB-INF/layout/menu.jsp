@@ -10,10 +10,15 @@
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">상품등록</a>
                     </c:when>
                    	<c:otherwise>
-                   		
                    	</c:otherwise>
                     </c:choose>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">상품주문</a>
+                    <c:choose>
+                    <c:when test="${logId != 'admin'}">
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="orderList.do?userId=${logId }" >내 주문목록</a>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                    </c:choose>
                     <c:choose>
 						<c:when test="${empty logId }">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logForm.do">로그인</a>

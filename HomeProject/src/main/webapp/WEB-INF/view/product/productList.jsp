@@ -40,7 +40,7 @@
 			<td>${product.prodPrice }원</td>
 			<c:choose>
 				<c:when test="${not empty product.prodImg }">
-					<td><img src="./images/${product.prodImg }" width="50" height="50"></td>				
+					<td><img src="./images/${product.prodImg }" width="100" height="100"></td>				
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -49,6 +49,4 @@
 		</c:forEach>
 	</tbody>
 </table>
-
 <hr />
-<script>console.log(1234);</script>

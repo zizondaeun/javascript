@@ -15,6 +15,9 @@ import com.home.member.control.JoinFormControl;
 import com.home.member.control.LoginControl;
 import com.home.member.control.LoginFormControl;
 import com.home.member.control.LogoutControl;
+import com.home.orders.control.OrderDeleteControl;
+import com.home.orders.control.OrderListControl;
+import com.home.orders.control.OrderProductControl;
 import com.home.product.control.AddFormControl;
 import com.home.product.control.AddProductControl;
 import com.home.product.control.DeleteControl;
@@ -40,11 +43,11 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl()); //상품목록
 		map.put("/productInfo.do", new ProductInfoControl()); //상품상세화면
 		//회원가입
-		map.put("/joinForm.do", new JoinFormControl()); //이동
-		map.put("/join.do", new JoinControl()); //작성
+		map.put("/joinForm.do", new JoinFormControl()); //회원가입창으로 이동
+		map.put("/join.do", new JoinControl()); //회원가입 작성
 		//로그인
 		map.put("/logForm.do", new LoginFormControl()); //로그인창으로 이동
-		map.put("/login.do", new LoginControl()); 
+		map.put("/login.do", new LoginControl()); //
 		//로그아웃
 		map.put("/logout.do", new LogoutControl()); 
 		//관리자용
@@ -53,6 +56,10 @@ public class FrontController extends HttpServlet {
 		map.put("/modProductForm.do", new ModifyFormControl()); //상품수정페이지로 이동
 		map.put("/updateProduct.do", new ModifyControl()); //상품수정
 		map.put("/deleteProduct.do", new DeleteControl()); //상품삭제
+		//주문관련
+		map.put("/orderProduct.do", new OrderProductControl()); //상품주문페이지로 이동
+		map.put("/orderList.do", new OrderListControl()); //주문목록
+		map.put("/orderDelete.do", new OrderDeleteControl()); //상품삭제
 		
 	}
 	

@@ -26,7 +26,7 @@ public class AddProductControl implements Control {
 		String price = mr.getParameter("price");
 		String ex = mr.getParameter("ex");
 		String img = mr.getFilesystemName("myImg");
-		System.out.println(img);
+		//System.out.println(img);
 		ProductService svc = new ProductServiceImpl();
 		
 		ProductVO vo = new ProductVO();

@@ -18,7 +18,7 @@ public class ProductInfoControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//순서 product.jsp를 만들고 컨트롤을 만드는건지..?
 		String pno = req.getParameter("pno");
-		System.out.println(pno);
+		//System.out.println(pno);
 		
 		ProductService svc = new ProductServiceImpl();
 		ProductVO vo = svc.getProduct(Integer.parseInt(pno));
