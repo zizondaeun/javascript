@@ -41,13 +41,13 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		//.do 라는 url 요청이 들어오면, control 클래스의 인스턴스가 실행됨
 		map.put("/main.do", new MainControl()); //상품목록
-		map.put("/productInfo.do", new ProductInfoControl()); //상품상세화면
+		map.put("/productInfo.do", new ProductInfoControl()); //상품상세화면 이동
 		//회원가입
 		map.put("/joinForm.do", new JoinFormControl()); //회원가입창으로 이동
 		map.put("/join.do", new JoinControl()); //회원가입 작성
 		//로그인
 		map.put("/logForm.do", new LoginFormControl()); //로그인창으로 이동
-		map.put("/login.do", new LoginControl()); //
+		map.put("/login.do", new LoginControl()); 
 		//로그아웃
 		map.put("/logout.do", new LogoutControl()); 
 		//관리자용

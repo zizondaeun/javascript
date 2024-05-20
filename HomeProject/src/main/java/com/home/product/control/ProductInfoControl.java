@@ -16,7 +16,7 @@ public class ProductInfoControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//순서 product.jsp를 만들고 컨트롤을 만드는건지..?
+		//순서 product.jsp를 만들고 컨트롤을 만드는건지ㅇㅇㅇ
 		String pno = req.getParameter("pno");
 		//System.out.println(pno);
 		

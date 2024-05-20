@@ -44,7 +44,7 @@ public class MainControl implements Control{
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		
-		//req.getRequestDispatcher(path).forward(req, resp);
+		//req.getRequestDispatcher(path).forward(req, resp); /이게 있어야 페이지 이동을 하지~!
 		HttpUtils.forward(req, resp, path); //페이지이동
 	}
 	
