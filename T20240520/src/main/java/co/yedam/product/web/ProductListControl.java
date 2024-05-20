@@ -16,18 +16,20 @@ public class ProductListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) {
-		String path = "WEB-INF/product/productList.jsp";
-		path = "product/productList.tiles";
+		String path = "product/productList.tiles";
 		
 		ProductService svc = new ProductServiceImpl();
 		
-		List<ProductVO> list = svc.productList();
-		
+		List<ProductVO> list = svc.productList(); //쿼리문생각
 		req.setAttribute("productList", list);
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, res);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

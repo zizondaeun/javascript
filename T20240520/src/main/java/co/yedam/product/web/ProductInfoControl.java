@@ -16,28 +16,26 @@ public class ProductInfoControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) {
-		String path = "WEB-INF/product/productInfo.jsp";
-		path = "product/productInfo.tiles";
+		String path = "product/productInfo.tiles";
 		
-		String pCode = req.getParameter("prodCode");
-		
+		String pCode = req.getParameter("pCode");
+		//System.out.println(pCode + "9999");
 		ProductService svc = new ProductServiceImpl();
 		
-		ProductVO vo = svc.getProduct(pCode);
-		List<ProductVO> list = svc.productList();
-		
-		req.setAttribute("result", vo);
-		req.setAttribute("productList", list);
+		ProductVO vo = svc.infoProduct(pCode);
+		List<ProductVO> list = svc.likeProduct();
+		req.setAttribute("result", vo); //상세정보
+		req.setAttribute("list", list); //5개 리스트
+		//System.out.println(vo + "1111");
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, res);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 

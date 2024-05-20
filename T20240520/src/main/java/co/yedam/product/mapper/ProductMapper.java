@@ -10,4 +10,6 @@ public interface ProductMapper {
 
 	ProductVO selectProduct(String pCode);
 
+	List<ProductVO> selectStar();
+
 }

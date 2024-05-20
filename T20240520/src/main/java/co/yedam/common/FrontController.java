@@ -22,8 +22,8 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// 첫 페이지
-		map.put("/productList.do", new ProductListControl()); //목록
-		map.put("/productInfo.do", new ProductInfoControl()); //상세화면
+		map.put("/productList.do", new ProductListControl());
+		map.put("/productInfo.do", new ProductInfoControl());
 
 	}
 

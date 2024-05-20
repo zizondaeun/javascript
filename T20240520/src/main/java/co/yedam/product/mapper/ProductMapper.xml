@@ -2,14 +2,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.product.mapper.ProductMapper">
-
-	<select id="selectList" resultType="co.yedam.product.ProductVO">
-		select * from tbl_product
-		order by prod_code
-	</select>
- 
- 	<select id="selectProduct" resultType="co.yedam.product.ProductVO" parameterType="String">
- 		select * from tbl_product
+ 	
+ 	<select id="selectList" resultType="co.yedam.product.ProductVO">
+ 		select *
+ 		from tbl_product
+ 		order by prod_code
+ 	</select>
+ 	
+ 	<select id="selectProduct" resultType="co.yedam.product.ProductVO">
+ 		select *
+ 		from tbl_product
  		where prod_code = #{prodCode}
  	</select>
+ 	
+ 	<select id="selectStar" resultType="co.yedam.product.ProductVO">
+		select *
+		from tbl_product
+		where <![CDATA[rownum < 6]]>
+		order by like_it desc
+ 	</select>
+ 	
 </mapper>

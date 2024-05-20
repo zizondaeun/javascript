@@ -12,15 +12,20 @@ public class ProductServiceImpl implements ProductService {
 
 	SqlSession session = DataSource.getInstance().openSession(true); 
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
-	
+
 	@Override
 	public List<ProductVO> productList() {
 		return mapper.selectList();
 	}
 
 	@Override
-	public ProductVO getProduct(String pCode) {
+	public ProductVO infoProduct(String pCode) {
 		return mapper.selectProduct(pCode);
+	}
+
+	@Override
+	public List<ProductVO> likeProduct() {
+		return mapper.selectStar();
 	}
 
 }
