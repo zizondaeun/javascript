@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		let url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=u%2FBuG3HiYl5DhWC1LCWcIPrDS8Q5zrRcHFXDby79sFxt9tO5CbXM5M0pW47fqv7PXj7jeWXow81ZuvHXrxVieg%3D%3D'
+		fetch(url)
+			.then(resolve => resolve.json())
+			.then(result => {
+				console.log(result);
+				let data = result.data; //객체
+				//console.log(data);
+				
+				//서블릿작성 (content-type: application/x-www-form-urlencoded)
+				//json문자열(content-type: application/json);
+				fetch('registerCenter.do', {
+					method: 'post',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(data) //자바 객체를 json문자열로 제공받겠다
+				})
+					.then(resolve => resolve.text()) //"Success"-text로 받는거/ {"retCode" : "OK"}-json으로 받는거
+					.then(value => {
+						console.log(value);
+					})
+					.catch(error => {
+						console.log(error);
+					})
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	</script>
+</body>
+</html>
