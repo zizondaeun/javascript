@@ -83,8 +83,9 @@ public class FrontController extends HttpServlet { //main.do누르면 frontcontr
 		map.put("/editCart.do", new EditCart()); //수량변경
 		map.put("/delCart.do", new DelCart()); //삭제
 		
-		//센터데이터 생성
+		//센터 데이터 생성
 		map.put("/registerCenter.do", new RegisterCenter());
+		
 		
 	}
 
