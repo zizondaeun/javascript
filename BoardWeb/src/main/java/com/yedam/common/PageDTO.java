@@ -11,7 +11,7 @@ public class PageDTO { //데이터트랜스포오브젝트..
 	private int startPage, endPage; //현재페이지를 기준으로 시작페이지, 종료페이지
 	private boolean prev, next; //이전, 이후 페이지 체크
 	
-	//생성자 /10페이지씩하는거 해보기
+	//생성자 /10개씩하는거 해보기
 	public PageDTO(int page, int totalCnt) {
 		this.page = page;
 		int realEnd = (int) Math.ceil(totalCnt / 5.0);

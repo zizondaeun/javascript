@@ -37,7 +37,8 @@ public class MainControl implements Control{
 		
 		List<BoardVO> list = svc.boardList(search); //목록
 		PageDTO pageDTO = new PageDTO(Integer.parseInt(page), svc.getTotal(search)); //건수(페이지..) /256
-		
+		//System.out.println(pageDTO + "898989");
+		System.out.println(svc.getTotal(search) + "9000");
 		//jsp 페이지에 정보 전달
 		req.setAttribute("boardList", list);
 		req.setAttribute("paging", pageDTO);

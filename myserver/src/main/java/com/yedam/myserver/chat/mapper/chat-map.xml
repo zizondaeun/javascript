@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.myserver.todo.mapper.ChatMapper">
+
+<!-- 전체조회 --> 
+<select id="findAll" resultType="chatVO">
+	SELECT NO, SNDR, MSG, DTTM 
+	  FROM CHAT
+	 <where>
+	 	<if test="no != null">
+	 		and no >= #{no} 
+	 	</if>
+	 	<if test="dttm != null">
+	 		and dttm >= to_date(#{dttm},'YYYYMMDDHH24:MI:SS') 
+	 	</if>
+	 </where>
+	 ORDER BY NO 
+</select>
+
+<insert id="persist">
+	<selectKey order="BEFORE" keyProperty="no" resultType="string">
+		SELECT NVL(MAX(no),0)+1 FROM CHAT
+	</selectKey>
+	INSERT INTO 
+	       CHAT (NO, 
+	             SNDR,
+	             MSG, 
+	             DTTM ) 
+         VALUES ( #{no}, 
+                 #{sndr},
+                 #{msg}, 
+                 sysdate )
+</insert>
+ 
+
+</mapper>

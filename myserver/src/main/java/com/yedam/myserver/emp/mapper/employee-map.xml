@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.myserver.emp.mapper.EmployeeMapper"> 
+
+<select id="findEmployees"  resultType="employee">
+	SELECT EMPLOYEE_ID
+			,FIRST_NAME
+			,LAST_NAME
+			,EMAIL
+			,PHONE_NUMBER
+			,HIRE_DATE
+			,JOB_ID
+			,SALARY
+			,COMMISSION_PCT
+			,MANAGER_ID
+			,DEPARTMENT_ID
+	  FROM EMPLOYEES
+	 ORDER BY EMPLOYEE_ID  
+</select>
+
+
+<select id="findById"  resultType="employee">
+	SELECT EMPLOYEE_ID
+			,FIRST_NAME
+			,LAST_NAME
+			,EMAIL
+			,PHONE_NUMBER
+			,HIRE_DATE
+			,JOB_ID
+			,SALARY
+			,COMMISSION_PCT
+			,MANAGER_ID
+			,DEPARTMENT_ID
+	  FROM EMPLOYEES
+	 WHERE EMPLOYEE_ID = #{employee_id}  
+</select>
+
+
+<insert id="persist" >
+	INSERT INTO EMPLOYEES (
+			EMPLOYEE_ID,
+			FIRST_NAME,
+			LAST_NAME,
+			EMAIL,
+			HIRE_DATE,
+			JOB_ID
+	) VALUES (
+			#{employee_id},
+			#{first_name},
+			#{last_name},
+			#{email},
+			#{hire_date},
+			#{job_id}
+	)
+</insert>
+
+<insert id="remove" >
+	DELETE FROM EMPLOYEES
+	WHERE EMPLOYEE_ID = #{employee_id}
+</insert>
+
+<update id="merge" >
+	UPDATE EMPLOYEES
+	   SET FIRST_NAME = #{first_name},
+		   LAST_NAME = #{last_name},
+		   EMAIL = #{email},
+		   PHONE_NUMBER = #{phone_number},
+		   JOB_ID = #{job_id},	
+		   SALARY = #{salary}    
+	WHERE EMPLOYEE_ID = #{employee_id}
+</update>
+
+<select id="findJobs" resultType="jobs">
+	SELECT JOB_ID, JOB_TITLE 
+	  FROM JOBS
+	 ORDER BY JOB_ID 
+</select>
+
+<select id="findDepartments" resultType="departments">
+	SELECT A.DEPARTMENT_ID, A.DEPARTMENT_NAME 
+	  FROM DEPARTMENTS A
+	 ORDER BY A.DEPARTMENT_ID 
+</select>
+
+</mapper>
